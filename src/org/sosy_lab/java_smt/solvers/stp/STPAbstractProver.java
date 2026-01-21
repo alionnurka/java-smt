@@ -10,5 +10,65 @@
 
 package org.sosy_lab.java_smt.solvers.stp;
 
-public class STPAbstractProver {
+import org.checkerframework.checker.nullness.qual.Nullable;
+import org.sosy_lab.java_smt.api.BooleanFormula;
+import org.sosy_lab.java_smt.api.Evaluator;
+import org.sosy_lab.java_smt.api.Model;
+import org.sosy_lab.java_smt.api.SolverException;
+import org.sosy_lab.java_smt.basicimpl.AbstractProverWithAllSat;
+
+import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
+
+public class STPAbstractProver<T> extends AbstractProverWithAllSat<T> {
+    @Override
+    protected Evaluator getEvaluatorWithoutChecks() throws SolverException, InterruptedException {
+        return null;
+    }
+
+    @Override
+    protected boolean hasPersistentModel() {
+        return false;
+    }
+
+    @Override
+    protected void pushImpl() throws InterruptedException {
+
+    }
+
+    @Override
+    protected void popImpl() {
+
+    }
+
+    @Override
+    protected @Nullable T addConstraintImpl(BooleanFormula constraint) throws InterruptedException {
+        return null;
+    }
+
+    @Override
+    protected boolean isUnsatImpl() throws SolverException, InterruptedException {
+        return false;
+    }
+
+    @Override
+    public boolean isUnsatWithAssumptions(Collection<BooleanFormula> assumptions) throws SolverException, InterruptedException {
+        return false;
+    }
+
+    @Override
+    public Model getModel() throws SolverException {
+        return null;
+    }
+
+    @Override
+    public List<BooleanFormula> getUnsatCore() {
+        return List.of();
+    }
+
+    @Override
+    public Optional<List<BooleanFormula>> unsatCoreOverAssumptions(Collection<BooleanFormula> assumptions) throws SolverException, InterruptedException {
+        return Optional.empty();
+    }
 }

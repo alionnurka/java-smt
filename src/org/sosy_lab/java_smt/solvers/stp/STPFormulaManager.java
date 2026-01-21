@@ -10,5 +10,51 @@
 
 package org.sosy_lab.java_smt.solvers.stp;
 
-public class STPFormulaManager {
+import org.checkerframework.checker.nullness.qual.Nullable;
+import org.sosy_lab.java_smt.api.IntegerFormulaManager;
+import org.sosy_lab.java_smt.api.RationalFormulaManager;
+import org.sosy_lab.java_smt.basicimpl.*;
+
+import java.io.IOException;
+
+public class STPFormulaManager extends AbstractFormulaManager<Long, Long, Long, Long> {
+    /**
+     * Builds a solver from the given theory implementations.
+     *
+     * @param pFormulaCreator
+     * @param functionManager
+     * @param booleanManager
+     * @param pIntegerManager
+     * @param pRationalManager
+     * @param bitvectorManager
+     * @param floatingPointManager
+     * @param quantifiedManager
+     * @param arrayManager
+     * @param slManager
+     * @param strManager
+     * @param enumManager
+     */
+    protected STPFormulaManager(FormulaCreator<Long, Long, Long, Long> pFormulaCreator, AbstractUFManager<Long, ?, Long, Long> functionManager, AbstractBooleanFormulaManager<Long, Long, Long, Long> booleanManager, @Nullable IntegerFormulaManager pIntegerManager, @Nullable RationalFormulaManager pRationalManager, @Nullable AbstractBitvectorFormulaManager<Long, Long, Long, Long> bitvectorManager, @Nullable AbstractFloatingPointFormulaManager<Long, Long, Long, Long> floatingPointManager, @Nullable AbstractQuantifiedFormulaManager<Long, Long, Long, Long> quantifiedManager, @Nullable AbstractArrayFormulaManager<Long, Long, Long, Long> arrayManager, @Nullable AbstractSLFormulaManager<Long, Long, Long, Long> slManager, @Nullable AbstractStringFormulaManager<Long, Long, Long, Long> strManager, @Nullable AbstractEnumerationFormulaManager<Long, Long, Long, Long> enumManager) {
+        super(pFormulaCreator, functionManager, booleanManager, pIntegerManager, pRationalManager, bitvectorManager, floatingPointManager, quantifiedManager, arrayManager, slManager, strManager, enumManager);
+    }
+
+    /**
+     * @param formulaStr
+     * @return
+     * @throws IllegalArgumentException
+     */
+    @Override
+    protected Long parseImpl(String formulaStr) throws IllegalArgumentException {
+        return 0L;
+    }
+
+    /**
+     * @param t
+     * @return
+     * @throws IOException
+     */
+    @Override
+    protected String dumpFormulaImpl(Long t) throws IOException {
+        return "";
+    }
 }

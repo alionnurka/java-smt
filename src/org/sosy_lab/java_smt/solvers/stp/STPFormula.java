@@ -10,5 +10,7 @@
 
 package org.sosy_lab.java_smt.solvers.stp;
 
-public class STPFormula {
+import org.sosy_lab.java_smt.api.Formula;
+
+public class STPFormula implements Formula {
 }

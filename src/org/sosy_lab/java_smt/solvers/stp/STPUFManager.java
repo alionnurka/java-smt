@@ -10,5 +10,11 @@
 
 package org.sosy_lab.java_smt.solvers.stp;
 
-public class STPUFManager {
+import org.sosy_lab.java_smt.basicimpl.AbstractUFManager;
+import org.sosy_lab.java_smt.basicimpl.FormulaCreator;
+
+public class STPUFManager extends AbstractUFManager<Long, Long, Long, Long> {
+    STPUFManager(FormulaCreator<Long, Long, Long, Long> pCreator) {
+        super(pCreator);
+    }
 }
