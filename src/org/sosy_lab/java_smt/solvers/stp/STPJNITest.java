@@ -10,17 +10,14 @@
 
 package org.sosy_lab.java_smt.solvers.stp;
 
+public class STPJNITest {
 
-public final class STPJNI {
-
-    static {
-        System.loadLibrary("javasmtstp");
+    public static void main(String[] args) {
+        long vc = STPJNI.createVC();
+        if (vc == 0) {
+            throw new AssertionError("VC creation failed");
+        }
+        System.out.println("STP VC pointer: " + vc);
+        STPJNI.destroyVC(vc);
     }
-
-    private STPJNI() {}
-
-    public static native long createVC();
-
-    public static native void destroyVC(long vcPtr);
 }
-
