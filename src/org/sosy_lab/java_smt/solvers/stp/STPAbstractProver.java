@@ -11,17 +11,20 @@
 package org.sosy_lab.java_smt.solvers.stp;
 
 import org.checkerframework.checker.nullness.qual.Nullable;
-import org.sosy_lab.java_smt.api.BooleanFormula;
-import org.sosy_lab.java_smt.api.Evaluator;
-import org.sosy_lab.java_smt.api.Model;
-import org.sosy_lab.java_smt.api.SolverException;
+import org.sosy_lab.common.ShutdownNotifier;
+import org.sosy_lab.java_smt.api.*;
 import org.sosy_lab.java_smt.basicimpl.AbstractProverWithAllSat;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 public class STPAbstractProver<T> extends AbstractProverWithAllSat<T> {
+    protected STPAbstractProver(Set<SolverContext.ProverOptions> pOptions, BooleanFormulaManager pBmgr, ShutdownNotifier pShutdownNotifier) {
+        super(pOptions, pBmgr, pShutdownNotifier);
+    }
+
     @Override
     protected Evaluator getEvaluatorWithoutChecks() throws SolverException, InterruptedException {
         return null;

@@ -122,4 +122,25 @@ SPDX-License-Identifier: Apache-2.0
     <target name="build-dependencies" depends="init, resolve-dependencies"/>
 
     <target name="standard-checks" depends="tests, spotbugs, checkstyle, javadoc"/>
+
+    <target name="run-stp-jni-test"
+            depends="build-project"
+            description="Run STP JNI binding smoke test">
+
+        <echo message="Running STP JNI binding smoke test"/>
+
+        <java classname="org.sosy_lab.java_smt.solvers.stp.STPJNIBindingSmokeTest"
+              fork="true"
+              failonerror="true">
+
+            <!-- Use JavaSMT's compiled classes -->
+            <classpath refid="classpath"/>
+
+            <!-- Native libraries: JNI glue + STP + ABC -->
+            <jvmarg value="-Djava.library.path=lib/native/source/stp"/>
+
+        </java>
+    </target>
+
+
 </project>

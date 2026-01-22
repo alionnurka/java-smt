@@ -11,6 +11,7 @@
 package org.sosy_lab.java_smt.solvers.stp;
 
 import org.sosy_lab.common.ShutdownNotifier;
+import org.sosy_lab.java_smt.api.BooleanFormulaManager;
 import org.sosy_lab.java_smt.api.ProverEnvironment;
 import org.sosy_lab.java_smt.api.SolverContext;
 import org.sosy_lab.java_smt.solvers.boolector.BoolectorFormulaCreator;
@@ -19,4 +20,7 @@ import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class STPTheoremProver extends STPAbstractProver<Void> implements ProverEnvironment {
+    protected STPTheoremProver(Set<SolverContext.ProverOptions> pOptions, BooleanFormulaManager pBmgr, ShutdownNotifier pShutdownNotifier) {
+        super(pOptions, pBmgr, pShutdownNotifier);
+    }
 }

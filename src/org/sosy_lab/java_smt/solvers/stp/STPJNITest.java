@@ -13,11 +13,5 @@ package org.sosy_lab.java_smt.solvers.stp;
 public class STPJNITest {
 
     public static void main(String[] args) {
-        long vc = STPJNI.createVC();
-        if (vc == 0) {
-            throw new AssertionError("VC creation failed");
-        }
-        System.out.println("STP VC pointer: " + vc);
-        STPJNI.destroyVC(vc);
     }
 }
