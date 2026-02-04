@@ -10,19 +10,28 @@
 
 package org.sosy_lab.java_smt.solvers.stp;
 
+import org.sosy_lab.common.ShutdownNotifier;
 import org.sosy_lab.java_smt.SolverContextFactory;
-import org.sosy_lab.java_smt.api.FormulaManager;
 import org.sosy_lab.java_smt.api.InterpolatingProverEnvironment;
 import org.sosy_lab.java_smt.api.OptimizationProverEnvironment;
 import org.sosy_lab.java_smt.api.ProverEnvironment;
 import org.sosy_lab.java_smt.basicimpl.AbstractSolverContext;
 
-import java.util.Collection;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class STPSolverContext extends AbstractSolverContext {
-    protected STPSolverContext(FormulaManager fmgr) {
-        super(fmgr);
+    private final STPFormulaManager manager;
+    private final STPFormulaCreator creator;
+    private final ShutdownNotifier shutdownNotifier;
+    private final AtomicBoolean closed = new AtomicBoolean(false);
+
+    STPSolverContext(STPFormulaManager manager, STPFormulaCreator creator,
+                     ShutdownNotifier shutdownNotifier) {
+        super(manager);
+        this.manager = manager;
+        this.creator = creator;
+        this.shutdownNotifier = shutdownNotifier;
     }
 
     @Override
@@ -32,12 +41,13 @@ public class STPSolverContext extends AbstractSolverContext {
 
     @Override
     protected InterpolatingProverEnvironment<?> newProverEnvironmentWithInterpolation0(Set<ProverOptions> pSet) {
-        return null;
+        throw new UnsupportedOperationException("STP does not support interpolation");
     }
 
     @Override
-    protected OptimizationProverEnvironment newOptimizationProverEnvironment0(Set<ProverOptions> pSet) {
-        return null;
+    protected OptimizationProverEnvironment newOptimizationProverEnvironment0(
+            Set<ProverOptions> pSet) {
+        throw new UnsupportedOperationException("STP does not support optimization");
     }
 
     @Override
@@ -47,16 +57,19 @@ public class STPSolverContext extends AbstractSolverContext {
 
     @Override
     public String getVersion() {
-        return "";
+        return "Git version Tag: " + stpJNI.get_git_version_tag();
     }
 
     @Override
     public SolverContextFactory.Solvers getSolverName() {
-        return null;
+        return SolverContextFactory.Solvers.STP;
     }
+
 
     @Override
     public void close() {
-
+        if (!closed.getAndSet(true)) {
+            stpJNI.vc_Destroy(creator.getEnv());
+        }
     }
 }

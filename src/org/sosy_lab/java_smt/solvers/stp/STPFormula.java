@@ -13,4 +13,13 @@ package org.sosy_lab.java_smt.solvers.stp;
 import org.sosy_lab.java_smt.api.Formula;
 
 public class STPFormula implements Formula {
+    private long expr;
+
+    public STPFormula(long expr) {
+        this.expr = expr;
+    }
+
+    public long getExpr() {
+        return expr;
+    }
 }

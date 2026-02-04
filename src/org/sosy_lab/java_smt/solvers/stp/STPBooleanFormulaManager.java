@@ -11,61 +11,101 @@
 package org.sosy_lab.java_smt.solvers.stp;
 
 import org.sosy_lab.java_smt.basicimpl.AbstractBooleanFormulaManager;
-import org.sosy_lab.java_smt.basicimpl.FormulaCreator;
 
 public class STPBooleanFormulaManager extends AbstractBooleanFormulaManager<Long, Long, Long, Long> {
-    protected STPBooleanFormulaManager(FormulaCreator<Long, Long, Long, Long> pCreator) {
+    private final long stp;
+    private final long pTrue;
+    private final long pFalse;
+
+    STPBooleanFormulaManager(STPFormulaCreator pCreator) {
         super(pCreator);
+        this.stp = pCreator.getEnv();
+        pTrue = stpJNI.vc_trueExpr(stp);
+        pFalse = stpJNI.vc_falseExpr(stp);
     }
+
 
     @Override
     protected Long makeVariableImpl(String pVar) {
-        return 0L;
+        long boolType = stpJNI.vc_boolType(stp);
+        return stpJNI.vc_varExpr(stp, pVar, boolType);
     }
 
     @Override
     protected Long makeBooleanImpl(boolean value) {
-        return 0L;
+        return value ? pTrue : pFalse;
     }
 
     @Override
     protected Long not(Long pParam1) {
-        return 0L;
+        return stpJNI.vc_notExpr(stp, pParam1);
     }
 
     @Override
     protected Long and(Long pParam1, Long pParam2) {
-        return 0L;
+        if (isTrue(pParam1)) {
+            return pParam2;
+        } else if (isTrue(pParam2)) {
+            return pParam1;
+        } else if (isFalse(pParam1)) {
+            return pFalse;
+        } else if (isFalse(pParam2)) {
+            return pFalse;
+        } else if (pParam1.equals(pParam2)) {
+            return pParam1;
+        }
+        return stpJNI.vc_andExpr(stp, pParam1, pParam2);
     }
 
     @Override
     protected Long or(Long pParam1, Long pParam2) {
-        return 0L;
+        if (isTrue(pParam1)) {
+            return pTrue;
+        } else if (isTrue(pParam2)) {
+            return pTrue;
+        } else if (isFalse(pParam1)) {
+            return pParam2;
+        } else if (isFalse(pParam2)) {
+            return pParam1;
+        } else if (pParam1.equals(pParam2)) {
+            return pParam1;
+        }
+        return stpJNI.vc_orExpr(stp, pParam1, pParam2);
     }
 
     @Override
     protected Long xor(Long pParam1, Long pParam2) {
-        return 0L;
+        return stpJNI.vc_xorExpr(stp, pParam1, pParam2);
     }
 
     @Override
     protected Long equivalence(Long bits1, Long bits2) {
-        return 0L;
+        return stpJNI.vc_iffExpr(stp, bits1, bits2);
     }
 
     @Override
     protected boolean isTrue(Long bits) {
-        return false;
+        return bits.equals(pTrue);
     }
 
     @Override
     protected boolean isFalse(Long bits) {
-        return false;
+        return bits.equals(pFalse);
     }
 
     @Override
     protected Long ifThenElse(Long cond, Long f1, Long f2) {
-        return 0L;
+        if (isTrue(cond)) {
+            return f1;
+        } else if (isFalse(cond)) {
+            return f2;
+        } else if (f1.equals(f2)) {
+            return f1;
+        } else if (isTrue(f1) && isFalse(f2)) {
+            return cond;
+        } else if (isFalse(f1) && isTrue(f2)) {
+            return not(cond);
+        }
+        return stpJNI.vc_iteExpr(stp, cond, f1, f2);
     }
-
 }

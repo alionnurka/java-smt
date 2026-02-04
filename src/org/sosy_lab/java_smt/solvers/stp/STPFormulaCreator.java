@@ -10,9 +10,7 @@
 
 package org.sosy_lab.java_smt.solvers.stp;
 
-import org.checkerframework.checker.nullness.qual.Nullable;
 import org.sosy_lab.java_smt.api.Formula;
-import org.sosy_lab.java_smt.api.FormulaManager;
 import org.sosy_lab.java_smt.api.FormulaType;
 import org.sosy_lab.java_smt.api.visitors.FormulaVisitor;
 import org.sosy_lab.java_smt.basicimpl.FormulaCreator;
@@ -20,53 +18,76 @@ import org.sosy_lab.java_smt.basicimpl.FormulaCreator;
 import java.util.List;
 
 public class STPFormulaCreator extends FormulaCreator<Long, Long, Long, Long> {
-    protected STPFormulaCreator(Long aLong, Long boolType, @Nullable Long pIntegerType, @Nullable Long pRationalType, @Nullable Long stringType, @Nullable Long regexType) {
-        super(aLong, boolType, pIntegerType, pRationalType, stringType, regexType);
+    STPFormulaCreator(Long stp) {
+        super(stp, null, null, null, null, null);
     }
+
 
     @Override
     public Long getBitvectorType(int bitwidth) {
-        return 0L;
+        return stpJNI.vc_bvType(getEnv(), bitwidth);
     }
 
     @Override
     public Long getFloatingPointType(FormulaType.FloatingPointType type) {
-        return 0L;
+        throw new UnsupportedOperationException("Floating point operations are not supported by STP.");
     }
 
     @Override
     public Long getArrayType(Long indexType, Long elementType) {
-        return 0L;
+        return stpJNI.vc_arrayType(getEnv(), indexType, elementType);
     }
 
     @Override
     public Long makeVariable(Long aLong, String varName) {
-        return 0L;
+        return stpJNI.vc_varExpr(getEnv(), varName, aLong);
     }
 
     @Override
     public FormulaType<?> getFormulaType(Long formula) {
-        return null;
+
+        if (stpJNI.vc_isBool(formula) == 1) {
+            return FormulaType.BooleanType;
+        }
+
+        int bvWidth = stpJNI.getBVLength(formula);
+        if(bvWidth > 0) {
+            return FormulaType.getBitvectorTypeWithSize(bvWidth);
+        }
+
+        int indexWitdth = stpJNI.getIWidth(formula);
+        int valueWidth = stpJNI.getVWidth(formula);
+        if(indexWitdth > 0 && valueWidth > 0) {
+            return FormulaType.getArrayType(
+                    FormulaType.getBitvectorTypeWithSize(indexWitdth),
+                    FormulaType.getBitvectorTypeWithSize(valueWidth));
+        }
+
+        throw new AssertionError("Formula was not recognized by STP: " + formula);
     }
+
 
     @Override
     public <R> R visit(FormulaVisitor<R> visitor, Formula formula, Long f) {
-        return null;
+        throw new UnsupportedOperationException(
+                "Formula visiting not supported by STP.");
     }
 
     @Override
     public Long callFunctionImpl(Long declaration, List<Long> args) {
-        return 0L;
+        throw new UnsupportedOperationException(
+                "Functions are not supported by STP, use arrays instead.");
     }
 
     @Override
     public Long declareUFImpl(String pName, Long pReturnType, List<Long> pArgTypes) {
-        return 0L;
+        throw new UnsupportedOperationException(
+                "Functions are not supported by STP, use arrays instead.");
     }
 
     @Override
     protected Long getBooleanVarDeclarationImpl(Long pTFormulaInfo) {
-        return 0L;
+        return pTFormulaInfo;
     }
 
 }
