@@ -38,6 +38,7 @@ import org.sosy_lab.java_smt.solvers.mathsat5.Mathsat5SolverContext;
 import org.sosy_lab.java_smt.solvers.opensmt.OpenSmtSolverContext;
 import org.sosy_lab.java_smt.solvers.princess.PrincessSolverContext;
 import org.sosy_lab.java_smt.solvers.smtinterpol.SmtInterpolSolverContext;
+import org.sosy_lab.java_smt.solvers.stp.StpSolverContext;
 import org.sosy_lab.java_smt.solvers.yices2.Yices2SolverContext;
 import org.sosy_lab.java_smt.solvers.z3.Z3SolverContext;
 import org.sosy_lab.java_smt.solvers.z3legacy.Z3LegacySolverContext;
@@ -317,6 +318,10 @@ public class SolverContextFactory {
       case BITWUZLA:
         return BitwuzlaSolverContext.create(
             config, shutdownNotifier, logfile, randomSeed, floatingPointRoundingMode, loader);
+
+      case STP:
+        return StpSolverContext.create(
+          config, shutdownNotifier, loader);
 
       default:
         throw new AssertionError("no solver selected");

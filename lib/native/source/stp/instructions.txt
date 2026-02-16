@@ -1,0 +1,41 @@
+Clone and build stp:
+
+STP needs Minisat so we first clone and build it
+1. git clone https://github.com/stp/minisat.git
+2. cd minisat && mkdir build && cd build
+3. cmake ..
+4. make
+5. sudo make install
+6. cd ../..
+
+Then we install STP, we build with shared libraries on
+1. git clone --recursive https://github.com/stp/stp.git
+2. cd stp && mkdir build && cd build
+3. cmake -DBUILD_SHARED_LIBS=ON .. 
+4. make
+5. sudo make install
+
+
+Then we want to generate the JNI wrapper
+1. After installing we find the c_interface.h file under ./include/stp.
+2. We find the necessary .so files under ./build/lib .
+3. Using the ldd command we discover all necessary binaries for libstp.so to run.
+4. We need 4 libraries: libstp.so, libabc-pic.so, libminisat.so.2 and libstp.so.2.3
+5. Using ldd command we find all dependencies of a .so library.
+6. libminisat.so.2 dependes on libminisat.so.2.1.0 so we add it as well.
+6. Place all these .so files under lib/native/source/stp from JavaSMT root.
+
+Afterwards we generate the JNI wrapper.
+1. Write the stp.i swig interface.
+2. On terminal, make new dir and generate the wrappers from JavaSMT root:
+	cd lib/native/source/stp
+	mkdir -p src/org/sosy_lab/java_smt/solvers/stp/nativeapi
+	swig -java \
+  		-package org.sosy_lab.java_smt.solvers.stp \
+  		-outdir src/org/sosy_lab/java_smt/solvers/stp \
+  		-o stp_wrap.c \
+  		stp.i
+3. Copy the generated StpJNI. java into the specific solver package.
+
+Finally, build the c_wrap.h against stp .so libraries
+1. run the compile.sh script.

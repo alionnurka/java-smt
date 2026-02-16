@@ -12,7 +12,11 @@ package org.sosy_lab.java_smt.solvers.stp;
 
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.sosy_lab.common.ShutdownNotifier;
-import org.sosy_lab.java_smt.api.*;
+import org.sosy_lab.java_smt.api.BooleanFormula;
+import org.sosy_lab.java_smt.api.Evaluator;
+import org.sosy_lab.java_smt.api.SolverContext;
+import org.sosy_lab.java_smt.api.SolverException;
+import org.sosy_lab.java_smt.api.Model;
 import org.sosy_lab.java_smt.basicimpl.AbstractProverWithAllSat;
 
 import java.util.Collection;
@@ -24,13 +28,15 @@ import java.util.Set;
 public class STPAbstractProver<T> extends AbstractProverWithAllSat<T> {
 
     private final long stp;
-    private final STPFormulaManager manager;
-    private final STPFormulaCreator creator;
+    private final StpFormulaManager manager;
+    private final StpFormulaCreator creator;
 
-    protected STPAbstractProver
-    (STPFormulaManager manager, STPFormulaCreator creator, long stp,
-     ShutdownNotifier shutdownNotifier, Set<SolverContext.ProverOptions> pOptions
-    ) {
+    protected STPAbstractProver(
+        StpFormulaManager manager, 
+        StpFormulaCreator creator, 
+        long stp,
+        ShutdownNotifier shutdownNotifier, 
+        Set<SolverContext.ProverOptions> pOptions) {
         super(pOptions, manager.getBooleanFormulaManager(), shutdownNotifier);
         this.manager = manager;
         this.creator = creator;
@@ -61,9 +67,8 @@ public class STPAbstractProver<T> extends AbstractProverWithAllSat<T> {
 
     @Override
     protected @Nullable T addConstraintImpl(BooleanFormula constraint) throws InterruptedException {
-        STPFormula formula = (STPFormula) constraint;
-        long expression = formula.getExpr();
-        stpJNI.vc_assertFormula(stp, expression);
+        long expression = creator.extractInfo(constraint);
+        StpJNI.vc_assertFormula(stp, expression);
         return null;
     }
 
@@ -104,20 +109,19 @@ public class STPAbstractProver<T> extends AbstractProverWithAllSat<T> {
      */
     @Override
     protected boolean isUnsatImpl() throws SolverException {
-        int result = stpJNI.vc_query(stp, stpJNI.vc_falseExpr(stp));
+        int result = StpJNI.vc_query(stp, StpJNI.vc_falseExpr(stp));
         return result == 0;
     }
 
 
     @Override
     public boolean isUnsatWithAssumptions(Collection<BooleanFormula> assumptions) throws AssertionError {
-
-        throw new AssertionError("STP does not support assumptions");
+        throw new UnsupportedOperationException("STP does not support assumptions");
     }
 
     @Override
     public Model getModel() throws SolverException {
-        throw new SolverException("STP does not support model generation");
+        throw new UnsupportedOperationException("STP does not support model generation");
     }
 
     @Override

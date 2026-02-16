@@ -201,14 +201,11 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
 #include "c_interface.h"
 
 
-#include <stdint.h>		// Use the C99 official header
-
-
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-SWIGEXPORT jstring JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_get_1git_1version_1sha(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jstring JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_get_1git_1version_1sha(JNIEnv *jenv, jclass jcls) {
   jstring jresult = 0 ;
   char *result = 0 ;
   
@@ -220,7 +217,7 @@ SWIGEXPORT jstring JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_get_1
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_get_1git_1version_1tag(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jstring JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_get_1git_1version_1tag(JNIEnv *jenv, jclass jcls) {
   jstring jresult = 0 ;
   char *result = 0 ;
   
@@ -232,7 +229,7 @@ SWIGEXPORT jstring JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_get_1
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_get_1compilation_1env(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jstring JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_get_1compilation_1env(JNIEnv *jenv, jclass jcls) {
   jstring jresult = 0 ;
   char *result = 0 ;
   
@@ -244,7 +241,7 @@ SWIGEXPORT jstring JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_get_1
 }
 
 
-SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_process_1argument(JNIEnv *jenv, jclass jcls, jchar jarg1, jlong jarg2) {
+SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_process_1argument(JNIEnv *jenv, jclass jcls, jchar jarg1, jlong jarg2) {
   char arg1 ;
   VC arg2 = (VC) 0 ;
   
@@ -256,7 +253,7 @@ SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_process_
 }
 
 
-SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1setFlags(JNIEnv *jenv, jclass jcls, jlong jarg1, jchar jarg2, jint jarg3) {
+SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1setFlags(JNIEnv *jenv, jclass jcls, jlong jarg1, jchar jarg2, jint jarg3) {
   VC arg1 = (VC) 0 ;
   char arg2 ;
   int arg3 ;
@@ -270,7 +267,7 @@ SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1setF
 }
 
 
-SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1setFlag(JNIEnv *jenv, jclass jcls, jlong jarg1, jchar jarg2) {
+SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1setFlag(JNIEnv *jenv, jclass jcls, jlong jarg1, jchar jarg2) {
   VC arg1 = (VC) 0 ;
   char arg2 ;
   
@@ -282,7 +279,7 @@ SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1setF
 }
 
 
-SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1setInterfaceFlags(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2, jint jarg3) {
+SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1setInterfaceFlags(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2, jint jarg3) {
   VC arg1 = (VC) 0 ;
   enum ifaceflag_t arg2 ;
   int arg3 ;
@@ -296,7 +293,7 @@ SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1setI
 }
 
 
-SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_make_1division_1total(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_make_1division_1total(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   VC arg1 = (VC) 0 ;
   
   (void)jenv;
@@ -306,7 +303,7 @@ SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_make_1di
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1createValidityChecker(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1createValidityChecker(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   VC result;
   
@@ -318,7 +315,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1cre
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1boolType(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1boolType(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Type result;
@@ -332,7 +329,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1boo
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1arrayType(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1arrayType(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Type arg2 = (Type) 0 ;
@@ -350,7 +347,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1arr
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1varExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jstring jarg2, jlong jarg3) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1varExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jstring jarg2, jlong jarg3) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   char *arg2 = (char *) 0 ;
@@ -373,7 +370,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1var
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1varExpr1(JNIEnv *jenv, jclass jcls, jlong jarg1, jstring jarg2, jint jarg3, jint jarg4) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1varExpr1(JNIEnv *jenv, jclass jcls, jlong jarg1, jstring jarg2, jint jarg3, jint jarg4) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   char *arg2 = (char *) 0 ;
@@ -398,7 +395,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1var
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1getType(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1getType(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Expr arg2 = (Expr) 0 ;
@@ -414,7 +411,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1get
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1getBVLength(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
+SWIGEXPORT jint JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1getBVLength(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
   jint jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Expr arg2 = (Expr) 0 ;
@@ -430,7 +427,7 @@ SWIGEXPORT jint JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1getB
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1eqExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1eqExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Expr arg2 = (Expr) 0 ;
@@ -448,7 +445,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1eqE
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1trueExpr(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1trueExpr(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Expr result;
@@ -462,7 +459,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1tru
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1falseExpr(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1falseExpr(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Expr result;
@@ -476,7 +473,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1fal
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1notExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1notExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Expr arg2 = (Expr) 0 ;
@@ -492,7 +489,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1not
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1andExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1andExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Expr arg2 = (Expr) 0 ;
@@ -510,25 +507,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1and
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1andExprN(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jint jarg3) {
-  jlong jresult = 0 ;
-  VC arg1 = (VC) 0 ;
-  Expr *arg2 = (Expr *) 0 ;
-  int arg3 ;
-  Expr result;
-  
-  (void)jenv;
-  (void)jcls;
-  arg1 = *(VC *)&jarg1; 
-  arg2 = *(Expr **)&jarg2; 
-  arg3 = (int)jarg3; 
-  result = (Expr)vc_andExprN(arg1,arg2,arg3);
-  *(Expr *)&jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1orExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1orExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Expr arg2 = (Expr) 0 ;
@@ -546,25 +525,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1orE
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1orExprN(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jint jarg3) {
-  jlong jresult = 0 ;
-  VC arg1 = (VC) 0 ;
-  Expr *arg2 = (Expr *) 0 ;
-  int arg3 ;
-  Expr result;
-  
-  (void)jenv;
-  (void)jcls;
-  arg1 = *(VC *)&jarg1; 
-  arg2 = *(Expr **)&jarg2; 
-  arg3 = (int)jarg3; 
-  result = (Expr)vc_orExprN(arg1,arg2,arg3);
-  *(Expr *)&jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1xorExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1xorExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Expr arg2 = (Expr) 0 ;
@@ -582,7 +543,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1xor
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1impliesExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1impliesExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Expr arg2 = (Expr) 0 ;
@@ -600,7 +561,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1imp
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1iffExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1iffExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Expr arg2 = (Expr) 0 ;
@@ -618,7 +579,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1iff
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1iteExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3, jlong jarg4) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1iteExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3, jlong jarg4) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Expr arg2 = (Expr) 0 ;
@@ -638,7 +599,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1ite
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1boolToBVExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1boolToBVExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Expr arg2 = (Expr) 0 ;
@@ -654,7 +615,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1boo
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1paramBoolExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1paramBoolExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Expr arg2 = (Expr) 0 ;
@@ -672,7 +633,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1par
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1readExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1readExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Expr arg2 = (Expr) 0 ;
@@ -690,7 +651,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1rea
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1writeExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3, jlong jarg4) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1writeExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3, jlong jarg4) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Expr arg2 = (Expr) 0 ;
@@ -710,7 +671,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1wri
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1parseExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jstring jarg2) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1parseExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jstring jarg2) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   char *arg2 = (char *) 0 ;
@@ -731,7 +692,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1par
 }
 
 
-SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1printExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
+SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1printExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
   VC arg1 = (VC) 0 ;
   Expr arg2 = (Expr) 0 ;
   
@@ -743,7 +704,7 @@ SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1prin
 }
 
 
-SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1printExprCCode(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
+SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1printExprCCode(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
   VC arg1 = (VC) 0 ;
   Expr arg2 = (Expr) 0 ;
   
@@ -755,7 +716,7 @@ SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1prin
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1printSMTLIB(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
+SWIGEXPORT jstring JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1printSMTLIB(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
   jstring jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Expr arg2 = (Expr) 0 ;
@@ -771,7 +732,7 @@ SWIGEXPORT jstring JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1p
 }
 
 
-SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1printExprFile(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jint jarg3) {
+SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1printExprFile(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jint jarg3) {
   VC arg1 = (VC) 0 ;
   Expr arg2 = (Expr) 0 ;
   int arg3 ;
@@ -785,23 +746,7 @@ SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1prin
 }
 
 
-SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1printExprToBuffer(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3, jlong jarg4) {
-  VC arg1 = (VC) 0 ;
-  Expr arg2 = (Expr) 0 ;
-  char **arg3 = (char **) 0 ;
-  unsigned long *arg4 = (unsigned long *) 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  arg1 = *(VC *)&jarg1; 
-  arg2 = *(Expr *)&jarg2; 
-  arg3 = *(char ***)&jarg3; 
-  arg4 = *(unsigned long **)&jarg4; 
-  vc_printExprToBuffer(arg1,arg2,arg3,arg4);
-}
-
-
-SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1printCounterExample(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1printCounterExample(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   VC arg1 = (VC) 0 ;
   
   (void)jenv;
@@ -811,7 +756,7 @@ SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1prin
 }
 
 
-SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1printVarDecls(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1printVarDecls(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   VC arg1 = (VC) 0 ;
   
   (void)jenv;
@@ -821,7 +766,7 @@ SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1prin
 }
 
 
-SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1clearDecls(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1clearDecls(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   VC arg1 = (VC) 0 ;
   
   (void)jenv;
@@ -831,7 +776,7 @@ SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1clea
 }
 
 
-SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1printAsserts(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2) {
+SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1printAsserts(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2) {
   VC arg1 = (VC) 0 ;
   int arg2 ;
   
@@ -843,39 +788,7 @@ SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1prin
 }
 
 
-SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1printQueryStateToBuffer(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3, jlong jarg4, jint jarg5) {
-  VC arg1 = (VC) 0 ;
-  Expr arg2 = (Expr) 0 ;
-  char **arg3 = (char **) 0 ;
-  unsigned long *arg4 = (unsigned long *) 0 ;
-  int arg5 ;
-  
-  (void)jenv;
-  (void)jcls;
-  arg1 = *(VC *)&jarg1; 
-  arg2 = *(Expr *)&jarg2; 
-  arg3 = *(char ***)&jarg3; 
-  arg4 = *(unsigned long **)&jarg4; 
-  arg5 = (int)jarg5; 
-  vc_printQueryStateToBuffer(arg1,arg2,arg3,arg4,arg5);
-}
-
-
-SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1printCounterExampleToBuffer(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
-  VC arg1 = (VC) 0 ;
-  char **arg2 = (char **) 0 ;
-  unsigned long *arg3 = (unsigned long *) 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  arg1 = *(VC *)&jarg1; 
-  arg2 = *(char ***)&jarg2; 
-  arg3 = *(unsigned long **)&jarg3; 
-  vc_printCounterExampleToBuffer(arg1,arg2,arg3);
-}
-
-
-SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1printQuery(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1printQuery(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   VC arg1 = (VC) 0 ;
   
   (void)jenv;
@@ -885,7 +798,7 @@ SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1prin
 }
 
 
-SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1assertFormula(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
+SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1assertFormula(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
   VC arg1 = (VC) 0 ;
   Expr arg2 = (Expr) 0 ;
   
@@ -897,7 +810,7 @@ SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1asse
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1simplify(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1simplify(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Expr arg2 = (Expr) 0 ;
@@ -913,7 +826,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1sim
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1query_1with_1timeout(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jint jarg3, jint jarg4) {
+SWIGEXPORT jint JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1query_1with_1timeout(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jint jarg3, jint jarg4) {
   jint jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Expr arg2 = (Expr) 0 ;
@@ -933,7 +846,7 @@ SWIGEXPORT jint JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1quer
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1query(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
+SWIGEXPORT jint JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1query(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
   jint jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Expr arg2 = (Expr) 0 ;
@@ -949,7 +862,7 @@ SWIGEXPORT jint JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1quer
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1getCounterExample(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1getCounterExample(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Expr arg2 = (Expr) 0 ;
@@ -965,25 +878,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1get
 }
 
 
-SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1getCounterExampleArray(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3, jlong jarg4, jlong jarg5) {
-  VC arg1 = (VC) 0 ;
-  Expr arg2 = (Expr) 0 ;
-  Expr **arg3 = (Expr **) 0 ;
-  Expr **arg4 = (Expr **) 0 ;
-  int *arg5 = (int *) 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  arg1 = *(VC *)&jarg1; 
-  arg2 = *(Expr *)&jarg2; 
-  arg3 = *(Expr ***)&jarg3; 
-  arg4 = *(Expr ***)&jarg4; 
-  arg5 = *(int **)&jarg5; 
-  vc_getCounterExampleArray(arg1,arg2,arg3,arg4,arg5);
-}
-
-
-SWIGEXPORT jint JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1counterexample_1size(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT jint JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1counterexample_1size(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jint jresult = 0 ;
   VC arg1 = (VC) 0 ;
   int result;
@@ -997,7 +892,7 @@ SWIGEXPORT jint JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1coun
 }
 
 
-SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1push(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1push(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   VC arg1 = (VC) 0 ;
   
   (void)jenv;
@@ -1007,7 +902,7 @@ SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1push
 }
 
 
-SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1pop(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1pop(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   VC arg1 = (VC) 0 ;
   
   (void)jenv;
@@ -1017,7 +912,7 @@ SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1pop(
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_getBVInt(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT jint JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_getBVInt(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jint jresult = 0 ;
   Expr arg1 = (Expr) 0 ;
   int result;
@@ -1031,7 +926,7 @@ SWIGEXPORT jint JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_getBVInt
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_getBVUnsigned(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_getBVUnsigned(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   Expr arg1 = (Expr) 0 ;
   unsigned int result;
@@ -1045,7 +940,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_getBVUn
 }
 
 
-SWIGEXPORT jobject JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_getBVUnsignedLongLong(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT jobject JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_getBVUnsignedLongLong(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jobject jresult = 0 ;
   Expr arg1 = (Expr) 0 ;
   unsigned long long result;
@@ -1076,21 +971,7 @@ SWIGEXPORT jobject JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_getBV
 }
 
 
-SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1printBVBitStringToBuffer(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
-  Expr arg1 = (Expr) 0 ;
-  char **arg2 = (char **) 0 ;
-  unsigned long *arg3 = (unsigned long *) 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  arg1 = *(Expr *)&jarg1; 
-  arg2 = *(char ***)&jarg2; 
-  arg3 = *(unsigned long **)&jarg3; 
-  vc_printBVBitStringToBuffer(arg1,arg2,arg3);
-}
-
-
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvType(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1bvType(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   int arg2 ;
@@ -1106,7 +987,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvT
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bv32Type(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1bv32Type(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Type result;
@@ -1120,7 +1001,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bv3
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1getValueSize(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
+SWIGEXPORT jint JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1getValueSize(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
   jint jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Type arg2 = (Type) 0 ;
@@ -1136,7 +1017,7 @@ SWIGEXPORT jint JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1getV
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1getIndexSize(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
+SWIGEXPORT jint JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1getIndexSize(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
   jint jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Type arg2 = (Type) 0 ;
@@ -1152,7 +1033,7 @@ SWIGEXPORT jint JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1getI
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvConstExprFromDecStr(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2, jstring jarg3) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1bvConstExprFromDecStr(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2, jstring jarg3) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   int arg2 ;
@@ -1175,7 +1056,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvC
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvConstExprFromStr(JNIEnv *jenv, jclass jcls, jlong jarg1, jstring jarg2) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1bvConstExprFromStr(JNIEnv *jenv, jclass jcls, jlong jarg1, jstring jarg2) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   char *arg2 = (char *) 0 ;
@@ -1196,7 +1077,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvC
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvConstExprFromInt(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2, jlong jarg3) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1bvConstExprFromInt(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2, jlong jarg3) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   int arg2 ;
@@ -1214,7 +1095,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvC
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvConstExprFromLL(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2, jobject jarg3) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1bvConstExprFromLL(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2, jobject jarg3) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   int arg2 ;
@@ -1257,7 +1138,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvC
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bv32ConstExprFromInt(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1bv32ConstExprFromInt(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   unsigned int arg2 ;
@@ -1273,7 +1154,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bv3
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvConcatExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1bvConcatExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Expr arg2 = (Expr) 0 ;
@@ -1291,7 +1172,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvC
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvPlusExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2, jlong jarg3, jlong jarg4) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1bvPlusExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2, jlong jarg3, jlong jarg4) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   int arg2 ;
@@ -1311,27 +1192,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvP
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvPlusExprN(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2, jlong jarg3, jint jarg4) {
-  jlong jresult = 0 ;
-  VC arg1 = (VC) 0 ;
-  int arg2 ;
-  Expr *arg3 = (Expr *) 0 ;
-  int arg4 ;
-  Expr result;
-  
-  (void)jenv;
-  (void)jcls;
-  arg1 = *(VC *)&jarg1; 
-  arg2 = (int)jarg2; 
-  arg3 = *(Expr **)&jarg3; 
-  arg4 = (int)jarg4; 
-  result = (Expr)vc_bvPlusExprN(arg1,arg2,arg3,arg4);
-  *(Expr *)&jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bv32PlusExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1bv32PlusExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Expr arg2 = (Expr) 0 ;
@@ -1349,7 +1210,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bv3
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvMinusExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2, jlong jarg3, jlong jarg4) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1bvMinusExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2, jlong jarg3, jlong jarg4) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   int arg2 ;
@@ -1369,7 +1230,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvM
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bv32MinusExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1bv32MinusExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Expr arg2 = (Expr) 0 ;
@@ -1387,7 +1248,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bv3
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvMultExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2, jlong jarg3, jlong jarg4) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1bvMultExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2, jlong jarg3, jlong jarg4) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   int arg2 ;
@@ -1407,7 +1268,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvM
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bv32MultExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1bv32MultExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Expr arg2 = (Expr) 0 ;
@@ -1425,7 +1286,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bv3
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvDivExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2, jlong jarg3, jlong jarg4) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1bvDivExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2, jlong jarg3, jlong jarg4) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   int arg2 ;
@@ -1445,7 +1306,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvD
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvModExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2, jlong jarg3, jlong jarg4) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1bvModExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2, jlong jarg3, jlong jarg4) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   int arg2 ;
@@ -1465,7 +1326,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvM
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvRemExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2, jlong jarg3, jlong jarg4) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1bvRemExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2, jlong jarg3, jlong jarg4) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   int arg2 ;
@@ -1485,7 +1346,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvR
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1sbvDivExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2, jlong jarg3, jlong jarg4) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1sbvDivExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2, jlong jarg3, jlong jarg4) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   int arg2 ;
@@ -1505,7 +1366,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1sbv
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1sbvModExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2, jlong jarg3, jlong jarg4) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1sbvModExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2, jlong jarg3, jlong jarg4) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   int arg2 ;
@@ -1525,7 +1386,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1sbv
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1sbvRemExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2, jlong jarg3, jlong jarg4) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1sbvRemExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2, jlong jarg3, jlong jarg4) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   int arg2 ;
@@ -1545,7 +1406,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1sbv
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvLtExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1bvLtExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Expr arg2 = (Expr) 0 ;
@@ -1563,7 +1424,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvL
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvLeExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1bvLeExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Expr arg2 = (Expr) 0 ;
@@ -1581,7 +1442,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvL
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvGtExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1bvGtExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Expr arg2 = (Expr) 0 ;
@@ -1599,7 +1460,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvG
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvGeExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1bvGeExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Expr arg2 = (Expr) 0 ;
@@ -1617,7 +1478,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvG
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1sbvLtExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1sbvLtExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Expr arg2 = (Expr) 0 ;
@@ -1635,7 +1496,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1sbv
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1sbvLeExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1sbvLeExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Expr arg2 = (Expr) 0 ;
@@ -1653,7 +1514,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1sbv
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1sbvGtExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1sbvGtExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Expr arg2 = (Expr) 0 ;
@@ -1671,7 +1532,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1sbv
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1sbvGeExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1sbvGeExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Expr arg2 = (Expr) 0 ;
@@ -1689,7 +1550,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1sbv
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvUMinusExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1bvUMinusExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Expr arg2 = (Expr) 0 ;
@@ -1705,7 +1566,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvU
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvAndExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1bvAndExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Expr arg2 = (Expr) 0 ;
@@ -1723,7 +1584,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvA
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvOrExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1bvOrExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Expr arg2 = (Expr) 0 ;
@@ -1741,7 +1602,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvO
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvXorExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1bvXorExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Expr arg2 = (Expr) 0 ;
@@ -1759,7 +1620,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvX
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvNotExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1bvNotExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Expr arg2 = (Expr) 0 ;
@@ -1775,7 +1636,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvN
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvLeftShiftExprExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2, jlong jarg3, jlong jarg4) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1bvLeftShiftExprExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2, jlong jarg3, jlong jarg4) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   int arg2 ;
@@ -1795,7 +1656,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvL
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvRightShiftExprExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2, jlong jarg3, jlong jarg4) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1bvRightShiftExprExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2, jlong jarg3, jlong jarg4) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   int arg2 ;
@@ -1815,7 +1676,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvR
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvSignedRightShiftExprExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2, jlong jarg3, jlong jarg4) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1bvSignedRightShiftExprExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2, jlong jarg3, jlong jarg4) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   int arg2 ;
@@ -1835,7 +1696,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvS
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvLeftShiftExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2, jlong jarg3) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1bvLeftShiftExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2, jlong jarg3) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   int arg2 ;
@@ -1853,7 +1714,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvL
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvRightShiftExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2, jlong jarg3) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1bvRightShiftExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2, jlong jarg3) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   int arg2 ;
@@ -1871,7 +1732,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvR
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bv32LeftShiftExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2, jlong jarg3) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1bv32LeftShiftExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2, jlong jarg3) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   int arg2 ;
@@ -1889,7 +1750,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bv3
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bv32RightShiftExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2, jlong jarg3) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1bv32RightShiftExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2, jlong jarg3) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   int arg2 ;
@@ -1907,7 +1768,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bv3
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvVar32LeftShiftExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1bvVar32LeftShiftExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Expr arg2 = (Expr) 0 ;
@@ -1925,7 +1786,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvV
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvVar32RightShiftExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1bvVar32RightShiftExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Expr arg2 = (Expr) 0 ;
@@ -1943,7 +1804,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvV
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvVar32DivByPowOfTwoExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1bvVar32DivByPowOfTwoExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Expr arg2 = (Expr) 0 ;
@@ -1961,7 +1822,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvV
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvExtract(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jint jarg3, jint jarg4) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1bvExtract(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jint jarg3, jint jarg4) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Expr arg2 = (Expr) 0 ;
@@ -1981,7 +1842,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvE
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvBoolExtract(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jint jarg3) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1bvBoolExtract(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jint jarg3) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Expr arg2 = (Expr) 0 ;
@@ -1999,7 +1860,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvB
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvBoolExtract_1Zero(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jint jarg3) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1bvBoolExtract_1Zero(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jint jarg3) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Expr arg2 = (Expr) 0 ;
@@ -2017,7 +1878,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvB
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvBoolExtract_1One(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jint jarg3) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1bvBoolExtract_1One(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jint jarg3) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Expr arg2 = (Expr) 0 ;
@@ -2035,7 +1896,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvB
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvSignExtend(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jint jarg3) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1bvSignExtend(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jint jarg3) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Expr arg2 = (Expr) 0 ;
@@ -2053,7 +1914,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvS
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvCreateMemoryArray(JNIEnv *jenv, jclass jcls, jlong jarg1, jstring jarg2) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1bvCreateMemoryArray(JNIEnv *jenv, jclass jcls, jlong jarg1, jstring jarg2) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   char *arg2 = (char *) 0 ;
@@ -2074,7 +1935,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvC
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvReadMemoryArray(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3, jint jarg4) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1bvReadMemoryArray(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3, jint jarg4) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Expr arg2 = (Expr) 0 ;
@@ -2094,7 +1955,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvR
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvWriteToMemoryArray(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3, jlong jarg4, jint jarg5) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1bvWriteToMemoryArray(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3, jlong jarg4, jint jarg5) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Expr arg2 = (Expr) 0 ;
@@ -2116,7 +1977,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1bvW
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_exprString(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT jstring JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_exprString(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jstring jresult = 0 ;
   Expr arg1 = (Expr) 0 ;
   char *result = 0 ;
@@ -2130,7 +1991,7 @@ SWIGEXPORT jstring JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_exprS
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_typeString(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT jstring JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_typeString(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jstring jresult = 0 ;
   Type arg1 = (Type) 0 ;
   char *result = 0 ;
@@ -2144,7 +2005,7 @@ SWIGEXPORT jstring JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_typeS
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_getChild(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_getChild(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2) {
   jlong jresult = 0 ;
   Expr arg1 = (Expr) 0 ;
   int arg2 ;
@@ -2160,7 +2021,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_getChil
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1isBool(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT jint JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1isBool(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jint jresult = 0 ;
   Expr arg1 = (Expr) 0 ;
   int result;
@@ -2174,7 +2035,7 @@ SWIGEXPORT jint JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1isBo
 }
 
 
-SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1registerErrorHandler(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1registerErrorHandler(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   void (*arg1)(char const *) = (void (*)(char const *)) 0 ;
   
   (void)jenv;
@@ -2184,7 +2045,7 @@ SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1regi
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1getHashQueryStateToBuffer(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
+SWIGEXPORT jint JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1getHashQueryStateToBuffer(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
   jint jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Expr arg2 = (Expr) 0 ;
@@ -2200,7 +2061,7 @@ SWIGEXPORT jint JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1getH
 }
 
 
-SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1Destroy(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1Destroy(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   VC arg1 = (VC) 0 ;
   
   (void)jenv;
@@ -2210,7 +2071,7 @@ SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1Dest
 }
 
 
-SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1DeleteExpr(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1DeleteExpr(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   Expr arg1 = (Expr) 0 ;
   
   (void)jenv;
@@ -2220,7 +2081,7 @@ SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1Dele
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1getWholeCounterExample(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1getWholeCounterExample(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   WholeCounterExample result;
@@ -2234,7 +2095,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1get
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1getTermFromCounterExample(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
+SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1getTermFromCounterExample(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
   jlong jresult = 0 ;
   VC arg1 = (VC) 0 ;
   Expr arg2 = (Expr) 0 ;
@@ -2252,7 +2113,7 @@ SWIGEXPORT jlong JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1get
 }
 
 
-SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1deleteWholeCounterExample(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1deleteWholeCounterExample(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   WholeCounterExample arg1 = (WholeCounterExample) 0 ;
   
   (void)jenv;
@@ -2262,7 +2123,7 @@ SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1dele
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_getExprKind(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT jint JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_getExprKind(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jint jresult = 0 ;
   Expr arg1 = (Expr) 0 ;
   enum exprkind_t result;
@@ -2276,7 +2137,7 @@ SWIGEXPORT jint JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_getExprK
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_getDegree(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT jint JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_getDegree(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jint jresult = 0 ;
   Expr arg1 = (Expr) 0 ;
   int result;
@@ -2290,7 +2151,7 @@ SWIGEXPORT jint JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_getDegre
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_getBVLength(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT jint JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_getBVLength(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jint jresult = 0 ;
   Expr arg1 = (Expr) 0 ;
   int result;
@@ -2304,7 +2165,7 @@ SWIGEXPORT jint JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_getBVLen
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_BOOLEAN_1TYPE_1get(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jint JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_BOOLEAN_1TYPE_1get(JNIEnv *jenv, jclass jcls) {
   jint jresult = 0 ;
   enum type_t result;
   
@@ -2316,7 +2177,7 @@ SWIGEXPORT jint JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_BOOLEAN_
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_getType(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT jint JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_getType(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jint jresult = 0 ;
   Expr arg1 = (Expr) 0 ;
   enum type_t result;
@@ -2330,7 +2191,7 @@ SWIGEXPORT jint JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_getType(
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_getVWidth(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT jint JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_getVWidth(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jint jresult = 0 ;
   Expr arg1 = (Expr) 0 ;
   int result;
@@ -2344,7 +2205,7 @@ SWIGEXPORT jint JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_getVWidt
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_getIWidth(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT jint JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_getIWidth(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jint jresult = 0 ;
   Expr arg1 = (Expr) 0 ;
   int result;
@@ -2358,7 +2219,7 @@ SWIGEXPORT jint JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_getIWidt
 }
 
 
-SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1printCounterExampleFile(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2) {
+SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1printCounterExampleFile(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2) {
   VC arg1 = (VC) 0 ;
   int arg2 ;
   
@@ -2370,7 +2231,7 @@ SWIGEXPORT void JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1prin
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_exprName(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT jstring JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_exprName(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jstring jresult = 0 ;
   Expr arg1 = (Expr) 0 ;
   char *result = 0 ;
@@ -2384,7 +2245,7 @@ SWIGEXPORT jstring JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_exprN
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_getExprID(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT jint JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_getExprID(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jint jresult = 0 ;
   Expr arg1 = (Expr) 0 ;
   int result;
@@ -2398,32 +2259,7 @@ SWIGEXPORT jint JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_getExprI
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1parseMemExpr(JNIEnv *jenv, jclass jcls, jlong jarg1, jstring jarg2, jlong jarg3, jlong jarg4) {
-  jint jresult = 0 ;
-  VC arg1 = (VC) 0 ;
-  char *arg2 = (char *) 0 ;
-  Expr *arg3 = (Expr *) 0 ;
-  Expr *arg4 = (Expr *) 0 ;
-  int result;
-  
-  (void)jenv;
-  (void)jcls;
-  arg1 = *(VC *)&jarg1; 
-  arg2 = 0;
-  if (jarg2) {
-    arg2 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg2, 0);
-    if (!arg2) return 0;
-  }
-  arg3 = *(Expr **)&jarg3; 
-  arg4 = *(Expr **)&jarg4; 
-  result = (int)vc_parseMemExpr(arg1,(char const *)arg2,arg3,arg4);
-  jresult = (jint)result; 
-  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
-  return jresult;
-}
-
-
-SWIGEXPORT jboolean JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1supportsMinisat(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT jboolean JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1supportsMinisat(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jboolean jresult = 0 ;
   VC arg1 = (VC) 0 ;
   bool result;
@@ -2437,7 +2273,7 @@ SWIGEXPORT jboolean JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1useMinisat(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT jboolean JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1useMinisat(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jboolean jresult = 0 ;
   VC arg1 = (VC) 0 ;
   bool result;
@@ -2451,7 +2287,7 @@ SWIGEXPORT jboolean JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1isUsingMinisat(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT jboolean JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1isUsingMinisat(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jboolean jresult = 0 ;
   VC arg1 = (VC) 0 ;
   bool result;
@@ -2465,7 +2301,7 @@ SWIGEXPORT jboolean JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1supportsSimplifyingMinisat(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT jboolean JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1supportsSimplifyingMinisat(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jboolean jresult = 0 ;
   VC arg1 = (VC) 0 ;
   bool result;
@@ -2479,7 +2315,7 @@ SWIGEXPORT jboolean JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1useSimplifyingMinisat(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT jboolean JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1useSimplifyingMinisat(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jboolean jresult = 0 ;
   VC arg1 = (VC) 0 ;
   bool result;
@@ -2493,7 +2329,7 @@ SWIGEXPORT jboolean JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1isUsingSimplifyingMinisat(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT jboolean JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1isUsingSimplifyingMinisat(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jboolean jresult = 0 ;
   VC arg1 = (VC) 0 ;
   bool result;
@@ -2507,7 +2343,7 @@ SWIGEXPORT jboolean JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1supportsCryptominisat(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT jboolean JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1supportsCryptominisat(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jboolean jresult = 0 ;
   VC arg1 = (VC) 0 ;
   bool result;
@@ -2521,7 +2357,7 @@ SWIGEXPORT jboolean JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1useCryptominisat(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT jboolean JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1useCryptominisat(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jboolean jresult = 0 ;
   VC arg1 = (VC) 0 ;
   bool result;
@@ -2535,7 +2371,7 @@ SWIGEXPORT jboolean JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1isUsingCryptominisat(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT jboolean JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1isUsingCryptominisat(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jboolean jresult = 0 ;
   VC arg1 = (VC) 0 ;
   bool result;
@@ -2549,7 +2385,7 @@ SWIGEXPORT jboolean JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1supportsRiss(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT jboolean JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1supportsRiss(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jboolean jresult = 0 ;
   VC arg1 = (VC) 0 ;
   bool result;
@@ -2563,7 +2399,7 @@ SWIGEXPORT jboolean JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1useRiss(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT jboolean JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1useRiss(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jboolean jresult = 0 ;
   VC arg1 = (VC) 0 ;
   bool result;
@@ -2577,7 +2413,7 @@ SWIGEXPORT jboolean JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_stpJNI_vc_1isUsingRiss(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT jboolean JNICALL Java_org_sosy_1lab_java_1smt_solvers_stp_StpJNI_vc_1isUsingRiss(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jboolean jresult = 0 ;
   VC arg1 = (VC) 0 ;
   bool result;
