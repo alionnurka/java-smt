@@ -18,7 +18,7 @@ import org.sosy_lab.java_smt.api.SolverContext.ProverOptions;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class StpTheoremProver extends STPAbstractProver<Void> implements ProverEnvironment {
+public class StpTheoremProver extends StpAbstractProver<Void> implements ProverEnvironment {
 
     protected StpTheoremProver(
             StpFormulaManager manager,

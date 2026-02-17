@@ -25,13 +25,13 @@ import java.util.Optional;
 import java.util.Set;
 
 
-public class STPAbstractProver<T> extends AbstractProverWithAllSat<T> {
+public class StpAbstractProver<T> extends AbstractProverWithAllSat<T> {
 
     private final long stp;
     private final StpFormulaManager manager;
     private final StpFormulaCreator creator;
 
-    protected STPAbstractProver(
+    protected StpAbstractProver(
         StpFormulaManager manager, 
         StpFormulaCreator creator, 
         long stp,

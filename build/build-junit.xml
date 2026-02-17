@@ -85,7 +85,7 @@ SPDX-License-Identifier: Apache-2.0
             <include name="**/solvers/mathsat5/Mathsat5NativeApiTest.*"/>
             <include name="**/solvers/mathsat5/Mathsat5OptimizationNativeApiTest.*"/>
             <include name="**/solvers/opensmt/OpenSmtNativeAPITest.*"/>
-            <include name="**/solvers/stp/StpNativaAPITest.*"/>
+            <include name="**/solvers/stp/StpNativeAPITest.*"/>
             <include name="**/solvers/yices2/Yices2NativeApiTest.*"/>
             <include name="**/test/FloatingPointNumberTest.*"/>
             <include name="**/test/FormulaManagerTest.*"/>

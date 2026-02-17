@@ -7,7 +7,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.sosy_lab.common.NativeLibraries;
 
-public class StpNativaAPITest {
+public class StpNativeAPITest {
     @BeforeClass
 public static void load() {
   try {

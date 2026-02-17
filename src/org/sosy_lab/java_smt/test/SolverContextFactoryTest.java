@@ -134,6 +134,8 @@ public class SolverContextFactoryTest {
         return (IS_LINUX && isSufficientVersionOfLibcxx("z3")) || IS_WINDOWS || IS_MAC;
       case Z3_WITH_INTERPOLATION:
         return IS_LINUX;
+      case STP:
+        return IS_LINUX && !IS_ARCH_ARM64;
       default:
         throw new AssertionError("unexpected solver: " + solverToUse());
     }
