@@ -40,13 +40,18 @@ public class StpFormulaManager extends AbstractFormulaManager<Long, Long, Long, 
     }
 
     @Override
+    protected Long equalImpl(Long firstArg, Long secondArg) {
+        return StpJNI.vc_eqExpr(getEnvironment(), firstArg, secondArg);
+    }
+
+    @Override
     protected Long parseImpl(String formulaStr) throws IllegalArgumentException {
         throw new UnsupportedOperationException("STP cannot parse single formulas from string");
     }
 
     @Override
-    protected String dumpFormulaImpl(Long t) throws IOException {
-        return StpJNI.vc_printSMTLIB(getEnvironment(), t);
+    protected String dumpFormulaImpl(Long formula) throws IOException {
+        return StpJNI.vc_printSMTLIB(getEnvironment(), formula);
     }
 
 }

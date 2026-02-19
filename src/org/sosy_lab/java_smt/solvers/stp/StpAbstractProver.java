@@ -19,28 +19,37 @@ import org.sosy_lab.java_smt.api.SolverException;
 import org.sosy_lab.java_smt.api.Model;
 import org.sosy_lab.java_smt.basicimpl.AbstractProverWithAllSat;
 
+import com.google.common.base.Preconditions;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 
 public class StpAbstractProver<T> extends AbstractProverWithAllSat<T> {
 
     private final long stp;
-    private final StpFormulaManager manager;
     private final StpFormulaCreator creator;
+    private final AtomicBoolean isAnyStackAlive;
 
     protected StpAbstractProver(
-        StpFormulaManager manager, 
-        StpFormulaCreator creator, 
+        StpFormulaManager manager,
+        StpFormulaCreator creator,
         long stp,
-        ShutdownNotifier shutdownNotifier, 
-        Set<SolverContext.ProverOptions> pOptions) {
+        ShutdownNotifier shutdownNotifier,
+        Set<SolverContext.ProverOptions> pOptions,
+        AtomicBoolean pIsAnyStackAlive) {
         super(pOptions, manager.getBooleanFormulaManager(), shutdownNotifier);
-        this.manager = manager;
         this.creator = creator;
         this.stp = stp;
+        this.isAnyStackAlive = pIsAnyStackAlive;
+        Preconditions.checkState(
+            !this.isAnyStackAlive.getAndSet(true),
+            "STP does not support the usage of multiple "
+                + "solver stacks at the same time. Please close any existing solver stack.");
+        StpJNI.vc_push(stp);
     }
 
     @Override
@@ -55,14 +64,23 @@ public class StpAbstractProver<T> extends AbstractProverWithAllSat<T> {
 
     @Override
     protected void pushImpl() throws InterruptedException {
-        throw new UnsupportedOperationException(
-                "STP vc_push has unspecified semantics (see c_interface.h)");
+        StpJNI.vc_push(stp);
     }
 
     @Override
     protected void popImpl() {
-        throw new UnsupportedOperationException(
-                "STP vc_pop has unspecified semantics (see c_interface.h)");
+        StpJNI.vc_pop(stp);
+    }
+
+    @Override
+    public void close() {
+        if (!closed) {
+            for (int i = 0; i < size() + 1; i++) {
+                StpJNI.vc_pop(stp);
+            }
+            Preconditions.checkState(this.isAnyStackAlive.getAndSet(false));
+        }
+        super.close();
     }
 
     @Override
@@ -95,10 +113,10 @@ public class StpAbstractProver<T> extends AbstractProverWithAllSat<T> {
      *
      * <p>STP returns:</p>
      * <ul>
-     *   <li>{@code 0} (VALID)   if the implication holds for all models,
-     *       meaning the assertions are UNSAT</li>
-     *   <li>{@code 1} (INVALID) if a counterexample exists,
+     *   <li>{@code 0} (INVALID) if a counterexample exists,
      *       meaning the assertions are SAT</li>
+     *   <li>{@code 1} (VALID)   if the implication holds for all models,
+     *       meaning the assertions are UNSAT</li>
      * </ul>
      *
      * <p>This method translates STP's validity-based semantics into JavaSMT's
@@ -110,7 +128,12 @@ public class StpAbstractProver<T> extends AbstractProverWithAllSat<T> {
     @Override
     protected boolean isUnsatImpl() throws SolverException {
         int result = StpJNI.vc_query(stp, StpJNI.vc_falseExpr(stp));
-        return result == 0;
+        if (result == 0) {
+            return false;
+        } else if (result == 1) {
+            return true;
+        }
+        throw new SolverException("STP vc_query returned unexpected status " + result);
     }
 
 

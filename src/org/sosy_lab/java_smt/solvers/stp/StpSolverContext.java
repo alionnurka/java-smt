@@ -12,16 +12,13 @@ package org.sosy_lab.java_smt.solvers.stp;
 
 import org.sosy_lab.common.ShutdownNotifier;
 import org.sosy_lab.common.configuration.Configuration;
-import org.sosy_lab.common.io.PathCounterTemplate;
 import org.sosy_lab.java_smt.SolverContextFactory;
 import com.google.common.base.Preconditions;
-import org.sosy_lab.java_smt.api.FloatingPointRoundingMode;
 import org.sosy_lab.java_smt.api.InterpolatingProverEnvironment;
 import org.sosy_lab.java_smt.api.OptimizationProverEnvironment;
 import org.sosy_lab.java_smt.api.ProverEnvironment;
 import org.sosy_lab.java_smt.api.SolverContext;
 import org.sosy_lab.java_smt.basicimpl.AbstractSolverContext;
-import org.checkerframework.checker.nullness.qual.Nullable;
 
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -29,10 +26,11 @@ import java.util.function.Consumer;
 
 public class StpSolverContext extends AbstractSolverContext {
 
-    private final StpFormulaManager formulaManager;
     private final StpFormulaCreator formulaCreator;
+    private final StpFormulaManager formulaManager;
     private final ShutdownNotifier shutdownNotifier;
     private final AtomicBoolean closed = new AtomicBoolean(false);
+    private final AtomicBoolean isAnyStackAlive = new AtomicBoolean(false);
 
     StpSolverContext(
         StpFormulaManager formulaManager,
@@ -46,14 +44,14 @@ public class StpSolverContext extends AbstractSolverContext {
 
     @Override
     protected ProverEnvironment newProverEnvironment0(Set<ProverOptions> options) {
-        Preconditions.checkState(!closed.get(), "solver context is already closed");
+        Preconditions.checkState(!closed.get(), "Solver context is already closed.");
         return new StpTheoremProver(
                 formulaManager,
                 formulaCreator,
                 formulaCreator.getEnv(),
                 shutdownNotifier,
                 options,
-                new AtomicBoolean(false));
+                isAnyStackAlive);
     }
 
     @Override
@@ -74,7 +72,8 @@ public class StpSolverContext extends AbstractSolverContext {
 
     @Override
     public String getVersion() {
-        return "Git version Tag: " + StpJNI.get_git_version_tag();
+        String tag = StpJNI.get_git_version_tag();
+        return "STP " + tag;
     }
 
     @Override

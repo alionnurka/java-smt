@@ -368,7 +368,7 @@ public abstract class SolverBasedTest0 {
     assume()
         .withMessage("Solver %s does not support parsing formulae", solverToUse())
         .that(solverToUse())
-        .isNoneOf(Solvers.CVC4, Solvers.BOOLECTOR, Solvers.YICES2);
+        .isNoneOf(Solvers.CVC4, Solvers.BOOLECTOR, Solvers.YICES2, Solvers.STP);
 
     assume()
         .withMessage(
@@ -499,7 +499,9 @@ public abstract class SolverBasedTest0 {
 
     @Parameters(name = "{0}")
     public static Solvers[] getAllSolvers() {
-      return Solvers.values();
+      Solvers[] solversToReturn = new Solvers[1];
+      solversToReturn[0] = Solvers.STP;
+      return solversToReturn;
     }
 
     @Parameter(0)

@@ -16,6 +16,7 @@ import static org.sosy_lab.java_smt.SolverContextFactory.Solvers.CVC5;
 import static org.sosy_lab.java_smt.SolverContextFactory.Solvers.MATHSAT5;
 import static org.sosy_lab.java_smt.SolverContextFactory.Solvers.OPENSMT;
 import static org.sosy_lab.java_smt.SolverContextFactory.Solvers.PRINCESS;
+import static org.sosy_lab.java_smt.SolverContextFactory.Solvers.STP;
 import static org.sosy_lab.java_smt.api.SolverContext.ProverOptions.GENERATE_UNSAT_CORE;
 import static org.sosy_lab.java_smt.api.SolverContext.ProverOptions.GENERATE_UNSAT_CORE_OVER_ASSUMPTIONS;
 import static org.sosy_lab.java_smt.test.ProverEnvironmentSubject.assertThat;
@@ -120,7 +121,7 @@ public class ProverEnvironmentTest extends SolverBasedTest0.ParameterizedSolverB
         .withMessage(
             "Solver %s does not support unsat core generation over assumptions", solverToUse())
         .that(solverToUse())
-        .isNoneOf(PRINCESS, CVC4, CVC5, OPENSMT);
+        .isNoneOf(PRINCESS, CVC4, CVC5, OPENSMT, STP);
 
     try (ProverEnvironment pe =
         context.newProverEnvironment(GENERATE_UNSAT_CORE_OVER_ASSUMPTIONS)) {

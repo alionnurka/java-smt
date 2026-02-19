@@ -141,17 +141,17 @@ public class StpBitvectorFormulaManager extends AbstractBitvectorFormulaManager<
 
     @Override
     protected Long and(Long pParam1, Long pParam2) {
-        return StpJNI.vc_andExpr(stp, pParam1, pParam2);
+        return StpJNI.vc_bvAndExpr(stp, pParam1, pParam2);
     }
 
     @Override
     protected Long or(Long pParam1, Long pParam2) {
-        return StpJNI.vc_orExpr(stp, pParam1, pParam2);
+        return StpJNI.vc_bvOrExpr(stp, pParam1, pParam2);
     }
 
     @Override
     protected Long xor(Long pParam1, Long pParam2) {
-        return StpJNI.vc_xorExpr(stp, pParam1, pParam2);
+        return StpJNI.vc_bvXorExpr(stp, pParam1, pParam2);
     }
 
     @Override

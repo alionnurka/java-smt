@@ -27,6 +27,6 @@ public class StpTheoremProver extends StpAbstractProver<Void> implements ProverE
             ShutdownNotifier pShutdownNotifier,
             Set<ProverOptions> pOptions,
             AtomicBoolean pIsAnyStackAlive) {
-        super(manager, creator, stp, pShutdownNotifier, pOptions);
+        super(manager, creator, stp, pShutdownNotifier, pOptions, pIsAnyStackAlive);
     }
 }
