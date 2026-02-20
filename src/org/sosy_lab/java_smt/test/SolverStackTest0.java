@@ -48,7 +48,7 @@ public abstract class SolverStackTest0 extends SolverBasedTest0.ParameterizedSol
     assume()
         .withMessage("Solver does not support multiple stacks yet")
         .that(solver)
-        .isNotEqualTo(Solvers.BOOLECTOR);
+        .isNoneOf(Solvers.BOOLECTOR, Solvers.STP);
   }
 
   @Test

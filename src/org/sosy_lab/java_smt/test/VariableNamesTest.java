@@ -527,6 +527,10 @@ public class VariableNamesTest extends SolverBasedTest0.ParameterizedSolverBased
 
   @Test
   public void testBoolVariableDump() {
+    assume()
+        .withMessage("Solver %s does not support dumping formulae", solverToUse())
+        .that(solverToUse())
+        .isNotEqualTo(Solvers.STP);
     // FIXME: Broken on yices2, fixed in 2.7.0
     assume().that(solverToUse()).isNotEqualTo(Solvers.YICES2);
     for (String name : getAllNames()) {
@@ -541,6 +545,12 @@ public class VariableNamesTest extends SolverBasedTest0.ParameterizedSolverBased
   @Test
   public void testEqBoolVariableDump() {
     // FIXME: Rewrite test? Most solvers will simplify the formula to `true`.
+    
+    assume()
+        .withMessage("Solver %s does not support dumping formulae", solverToUse())
+        .that(solverToUse())
+        .isNotEqualTo(Solvers.STP);
+
     for (String name : getAllNames()) {
       BooleanFormula var = createVariableWith(bmgr::makeVariable, name);
       if (var != null) {

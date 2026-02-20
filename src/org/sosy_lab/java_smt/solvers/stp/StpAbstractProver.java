@@ -46,15 +46,19 @@ public class StpAbstractProver<T> extends AbstractProverWithAllSat<T> {
         this.stp = stp;
         this.isAnyStackAlive = pIsAnyStackAlive;
         Preconditions.checkState(
-            !this.isAnyStackAlive.getAndSet(true),
-            "STP does not support the usage of multiple "
-                + "solver stacks at the same time. Please close any existing solver stack.");
+            !isAnyStackAlive.getAndSet(true),
+            "STP solver context already has an active prover environment. "
+                + "Close it before creating another one.");
         StpJNI.vc_push(stp);
     }
 
     @Override
+    @SuppressWarnings("resource")
     protected Evaluator getEvaluatorWithoutChecks() throws SolverException, InterruptedException {
-        throw new UnsupportedOperationException("STP does not support model evaluation, only returns counterexamples.");
+        // STP only exposes values via counterexamples after an INVALID query.
+        // JavaSMT runs vc_query(false) for satisfiable checks, so after a SAT result
+        // we can use the counterexample as a model for evaluation.
+        return registerEvaluator(new STPModel(this, creator));
     }
 
     @Override
@@ -78,7 +82,7 @@ public class StpAbstractProver<T> extends AbstractProverWithAllSat<T> {
             for (int i = 0; i < size() + 1; i++) {
                 StpJNI.vc_pop(stp);
             }
-            Preconditions.checkState(this.isAnyStackAlive.getAndSet(false));
+            Preconditions.checkState(isAnyStackAlive.getAndSet(false));
         }
         super.close();
     }
@@ -143,8 +147,10 @@ public class StpAbstractProver<T> extends AbstractProverWithAllSat<T> {
     }
 
     @Override
+    @SuppressWarnings("resource")
     public Model getModel() throws SolverException {
-        throw new UnsupportedOperationException("STP does not support model generation");
+        checkGenerateModels();
+        return registerEvaluator(new STPModel(this, creator));
     }
 
     @Override

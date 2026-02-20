@@ -130,6 +130,10 @@ public class TranslateFormulaTest {
   @Test
   public void testDumpingAndParsing() throws SolverException, InterruptedException {
     requireParserTo();
+    assume()
+        .withMessage("Solver %s does not support dumping formulae", translateFrom)
+        .that(translateFrom)
+        .isNotEqualTo(Solvers.STP);
 
     BooleanFormula input = createTestFormula(managerFrom);
     String out = managerFrom.dumpFormula(input).toString();

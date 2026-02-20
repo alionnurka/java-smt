@@ -151,6 +151,12 @@ public class SolverFormulaIOTest extends SolverBasedTest0.ParameterizedSolverBas
   public void varDumpTest() {
     // Boolector will fail this anyway since bools are bitvecs for btor
     TruthJUnit.assume().that(solver).isNotEqualTo(Solvers.BOOLECTOR);
+
+    assume()
+        .withMessage("Solver %s does not support dumping formulae", solverToUse())
+        .that(solverToUse())
+        .isNotEqualTo(Solvers.STP);
+
     BooleanFormula a = bmgr.makeVariable("main::a");
     BooleanFormula b = bmgr.makeVariable("b");
     BooleanFormula c1 = bmgr.xor(a, b);
@@ -169,6 +175,11 @@ public class SolverFormulaIOTest extends SolverBasedTest0.ParameterizedSolverBas
     // Boolector will fail this anyway since bools are bitvecs for btor
     TruthJUnit.assume().that(solver).isNotEqualTo(Solvers.BOOLECTOR);
 
+    assume()
+        .withMessage("Solver %s does not support dumping formulae", solverToUse())
+        .that(solverToUse())
+        .isNotEqualTo(Solvers.STP);
+
     BooleanFormula a = bmgr.makeVariable("main a");
     BooleanFormula b = bmgr.makeVariable("b");
     BooleanFormula c1 = bmgr.xor(a, b);
@@ -186,6 +197,11 @@ public class SolverFormulaIOTest extends SolverBasedTest0.ParameterizedSolverBas
   public void varDumpTest2() {
     // Boolector will fail this anyway since bools are bitvecs for btor
     TruthJUnit.assume().that(solver).isNotEqualTo(Solvers.BOOLECTOR);
+
+    assume()
+    .withMessage("Solver %s does not support dumping formulae", solverToUse())
+    .that(solverToUse())
+    .isNotEqualTo(Solvers.STP);
 
     // always true
 
@@ -252,6 +268,12 @@ public class SolverFormulaIOTest extends SolverBasedTest0.ParameterizedSolverBas
   public void bvDumpTest() {
     requireBitvectors();
     TruthJUnit.assume().that(solver).isNotEqualTo(Solvers.BOOLECTOR);
+
+    assume()
+        .withMessage("Solver %s does not support dumping formulae", solverToUse())
+        .that(solverToUse())
+        .isNotEqualTo(Solvers.STP);
+        
     BitvectorFormula f1 = bvmgr.makeVariable(8, "a");
     BitvectorFormula val = bvmgr.makeBitvector(8, 1);
     BooleanFormula formula = bvmgr.equal(f1, val);

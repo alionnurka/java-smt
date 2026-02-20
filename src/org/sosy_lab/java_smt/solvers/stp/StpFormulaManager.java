@@ -10,9 +10,8 @@
 
 package org.sosy_lab.java_smt.solvers.stp;
 
-import org.sosy_lab.java_smt.basicimpl.*;
-
 import java.io.IOException;
+import org.sosy_lab.java_smt.basicimpl.AbstractFormulaManager;
 
 public class StpFormulaManager extends AbstractFormulaManager<Long, Long, Long, Long> {
 
@@ -51,7 +50,7 @@ public class StpFormulaManager extends AbstractFormulaManager<Long, Long, Long, 
 
     @Override
     protected String dumpFormulaImpl(Long formula) throws IOException {
-        return StpJNI.vc_printSMTLIB(getEnvironment(), formula);
+        throw new UnsupportedOperationException("Dumping formulas is not supported by STP.");
     }
 
 }

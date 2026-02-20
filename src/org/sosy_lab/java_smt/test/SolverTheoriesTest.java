@@ -1112,7 +1112,8 @@ public class SolverTheoriesTest extends SolverBasedTest0.ParameterizedSolverBase
           Solvers.BOOLECTOR,
           Solvers.PRINCESS,
           Solvers.YICES2,
-          Solvers.OPENSMT);
+          Solvers.OPENSMT,
+          Solvers.STP);
 
   private static final ImmutableSet<Solvers> VAR_AND_UF_TRACKING_SOLVERS =
       ImmutableSet.of(
@@ -1149,6 +1150,12 @@ public class SolverTheoriesTest extends SolverBasedTest0.ParameterizedSolverBase
   @Test
   @SuppressWarnings("CheckReturnValue")
   public void testVariableAndUFWithDifferentSort() {
+    assume()
+        .withMessage("Solver %s does not support UFs", solverToUse())
+        .that(solverToUse())
+        .isNotEqualTo(Solvers.STP);
+    // The assumption below doesn't make STP skip this test somehow
+    
     assume().that(solverToUse()).isNotIn(VAR_AND_UF_TRACKING_SOLVERS);
     bmgr.makeVariable("y");
     fmgr.declareUF("y", FormulaType.BooleanType, FormulaType.BooleanType);
@@ -1184,7 +1191,7 @@ public class SolverTheoriesTest extends SolverBasedTest0.ParameterizedSolverBase
     assume()
         .withMessage("Solver %s does not support UFs without arguments", solverToUse())
         .that(solverToUse())
-        .isNoneOf(Solvers.BOOLECTOR, Solvers.CVC5, Solvers.BITWUZLA);
+        .isNoneOf(Solvers.BOOLECTOR, Solvers.CVC5, Solvers.BITWUZLA, Solvers.STP);
 
     BooleanFormula z1 = bmgr.makeVariable("z");
     BooleanFormula z2 = fmgr.declareAndCallUF("z", FormulaType.BooleanType);

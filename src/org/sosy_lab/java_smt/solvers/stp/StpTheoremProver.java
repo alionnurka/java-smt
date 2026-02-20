@@ -12,7 +12,6 @@ package org.sosy_lab.java_smt.solvers.stp;
 
 import org.sosy_lab.common.ShutdownNotifier;
 import org.sosy_lab.java_smt.api.ProverEnvironment;
-import org.sosy_lab.java_smt.api.SolverContext;
 import org.sosy_lab.java_smt.api.SolverContext.ProverOptions;
 
 import java.util.Set;

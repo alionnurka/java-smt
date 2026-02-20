@@ -16,9 +16,11 @@ public class StpBooleanFormulaManager extends AbstractBooleanFormulaManager<Long
     private final long stp;
     private final long pTrue;
     private final long pFalse;
+    private final StpFormulaCreator creator;
 
     StpBooleanFormulaManager(StpFormulaCreator pCreator) {
         super(pCreator);
+        this.creator = pCreator;
         this.stp = pCreator.getEnv();
         pTrue = StpJNI.vc_trueExpr(stp);
         pFalse = StpJNI.vc_falseExpr(stp);
@@ -27,8 +29,17 @@ public class StpBooleanFormulaManager extends AbstractBooleanFormulaManager<Long
 
     @Override
     protected Long makeVariableImpl(String pVar) {
+        Long existing = creator.lookupDeclaredVariable(pVar);
+        if (existing != null) {
+            if (!creator.getFormulaType(existing).isBooleanType()) {
+                throw new IllegalArgumentException(
+                    "Symbol '" + pVar + "' already declared with non-boolean type");
+            }
+            return existing;
+        }
         long boolType = StpJNI.vc_boolType(stp);
-        return StpJNI.vc_varExpr(stp, pVar, boolType);
+        long var = StpJNI.vc_varExpr(stp, pVar, boolType);
+        return creator.registerDeclaredVariable(pVar, var);
     }
 
     @Override

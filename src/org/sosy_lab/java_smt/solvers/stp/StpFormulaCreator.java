@@ -12,6 +12,7 @@ package org.sosy_lab.java_smt.solvers.stp;
 
 import static java.util.Objects.requireNonNull;
 
+import com.google.common.collect.ImmutableMap;
 import org.sosy_lab.java_smt.api.ArrayFormula;
 import org.sosy_lab.java_smt.api.BitvectorFormula;
 import org.sosy_lab.java_smt.api.BooleanFormula;
@@ -24,11 +25,47 @@ import org.sosy_lab.java_smt.solvers.stp.StpFormula.StpArrayFormula;
 import org.sosy_lab.java_smt.solvers.stp.StpFormula.StpBitvectorFormula;
 import org.sosy_lab.java_smt.solvers.stp.StpFormula.StpBooleanFormula;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
+
+import java.math.BigInteger;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class StpFormulaCreator extends FormulaCreator<Long, Long, Long, Long> {
+    
+    private final Map<String, Long> declaredVariables = new LinkedHashMap<>();
+
     StpFormulaCreator(Long stp) {
         super(requireNonNull(stp), StpJNI.vc_boolType(stp), null, null, null, null);
+    }
+
+    @Nullable
+    Long lookupDeclaredVariable(String name) {
+        return declaredVariables.get(requireNonNull(name));
+    }
+
+    long registerDeclaredVariable(String name, long expr) {
+        String n = requireNonNull(name);
+        Long existing = declaredVariables.get(n);
+        if (existing == null) {
+            declaredVariables.put(n, expr);
+            return expr;
+        }
+
+        FormulaType<?> existingType = getFormulaType(existing);
+        FormulaType<?> newType = getFormulaType(expr);
+        if (!existingType.equals(newType)) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Symbol '%s' already declared with type %s, cannot redeclare as %s",
+                            n, existingType, newType));
+        }
+        return existing;
+    }
+
+    ImmutableMap<String, Long> getDeclaredVariables() {
+        return ImmutableMap.copyOf(declaredVariables);
     }
 
     @Override
@@ -73,6 +110,28 @@ public class StpFormulaCreator extends FormulaCreator<Long, Long, Long, Long> {
         }
     }
 
+    @Override
+    public @Nullable Object convertValue(Long additionalFormula, Long valueFormula) {
+        FormulaType<?> expectedType = getFormulaType(additionalFormula);
+
+        if (expectedType.isBooleanType()) {
+            int b = StpJNI.vc_isBool(valueFormula);
+            if (b == 1) {
+                return true;
+            } else if (b == 0) {
+                return false;
+            }
+            return null;
+        }
+
+        if (expectedType.isBitvectorType()) {
+            BigInteger v = StpJNI.getBVUnsignedLongLong(valueFormula);
+            return v;
+        }
+
+        return null;
+    }
+
     @SuppressWarnings("unchecked")
     @Override
     public <T extends Formula> FormulaType<T> getFormulaType(T formula) {
@@ -87,6 +146,24 @@ public class StpFormulaCreator extends FormulaCreator<Long, Long, Long, Long> {
             return ((StpFormula) formula).getExpr();
         }
         return super.extractInfo(requireNonNull(formula));
+    }
+
+    @Override
+    protected <TI extends Formula, TE extends Formula> FormulaType<TE> getArrayFormulaElementType(
+            ArrayFormula<TI, TE> pArray) {
+        if (pArray instanceof StpArrayFormula) {
+            return ((StpArrayFormula<TI, TE>) pArray).getElementType();
+        }
+        return super.getArrayFormulaElementType(pArray);
+    }
+
+    @Override
+    protected <TI extends Formula, TE extends Formula> FormulaType<TI> getArrayFormulaIndexType(
+            ArrayFormula<TI, TE> pArray) {
+        if (pArray instanceof StpArrayFormula) {
+            return ((StpArrayFormula<TI, TE>) pArray).getIndexType();
+        }
+        return super.getArrayFormulaIndexType(pArray);
     }
 
     @Override
@@ -131,7 +208,7 @@ public class StpFormulaCreator extends FormulaCreator<Long, Long, Long, Long> {
             return (T) new StpBitvectorFormula(expr, getEnv());
         }
         throw new IllegalArgumentException(
-                "Cannot create formulas of type " + type + " in Boolector.");
+                "Cannot create formulas of type " + type + " in STP.");
     }
 
     @Override

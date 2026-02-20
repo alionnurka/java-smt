@@ -62,6 +62,7 @@ public class UFManagerTest extends SolverBasedTest0.ParameterizedSolverBasedTest
 
   @Test
   public void testCollisionUf() {
+    assume().that(solverToUse()).isNotEqualTo(Solvers.STP);
     var type1 = bvmgr != null ? FormulaType.getBitvectorTypeWithSize(8) : FormulaType.IntegerType;
     var type2 = bvmgr != null ? FormulaType.getBitvectorTypeWithSize(16) : FormulaType.RationalType;
 
@@ -82,6 +83,7 @@ public class UFManagerTest extends SolverBasedTest0.ParameterizedSolverBasedTest
   @Test
   public void testDeclareAndCallUFWithInt() throws SolverException, InterruptedException {
     requireIntegers();
+    assume().that(solverToUse()).isNotEqualTo(Solvers.STP);
 
     IntegerFormula x = imgr.makeVariable("x");
     IntegerFormula value = imgr.makeNumber(1234);
@@ -137,7 +139,7 @@ public class UFManagerTest extends SolverBasedTest0.ParameterizedSolverBasedTest
     assume()
         .withMessage("Solver %s does not support mixed integer-real artihmetic ", solverToUse())
         .that(solver)
-        .isNotEqualTo(Solvers.OPENSMT);
+        .isNoneOf(Solvers.OPENSMT, Solvers.STP);
 
     requireIntegers();
     requireRationals();
@@ -185,6 +187,7 @@ public class UFManagerTest extends SolverBasedTest0.ParameterizedSolverBasedTest
   public void testDeclareAndCallUFWithIncompatibleTypesIntVsRational() {
     requireIntegers();
     requireRationals();
+    assume().that(solverToUse()).isNotEqualTo(Solvers.STP);
 
     for (String name : VALID_NAMES) {
       FunctionDeclaration<?> declaration =
@@ -231,6 +234,11 @@ public class UFManagerTest extends SolverBasedTest0.ParameterizedSolverBasedTest
   @Test
   public void testDeclareAndCallUFWithIncompatibleTypesBV4VsBool() {
     requireBitvectors();
+
+    assume()
+        .withMessage("Solver %s does not support dumping formulae", solverToUse())
+        .that(solverToUse())
+        .isNotEqualTo(Solvers.STP);
 
     for (String name : VALID_NAMES) {
       FunctionDeclaration<?> declaration =
@@ -282,6 +290,10 @@ public class UFManagerTest extends SolverBasedTest0.ParameterizedSolverBasedTest
 
   @Test
   public void testDeclareAndCallUFWithBooleanAndBVTypes() {
+    assume()
+    .withMessage("Solver %s does not support uninterpreted Functions", solverToUse())
+    .that(solver)
+    .isNotEqualTo(Solvers.STP);
     requireBitvectors();
 
     for (String name : VALID_NAMES) {
@@ -314,6 +326,11 @@ public class UFManagerTest extends SolverBasedTest0.ParameterizedSolverBasedTest
   @Test
   public void testDeclareAndCallUFWithBv() {
     requireBitvectors();
+    assume()
+        .withMessage("Solver %s does not support UFs", solverToUse())
+        .that(solverToUse())
+        .isNotEqualTo(Solvers.STP);
+    
     for (String name : VALID_NAMES) {
       Formula f =
           fmgr.declareAndCallUF(
@@ -349,6 +366,11 @@ public class UFManagerTest extends SolverBasedTest0.ParameterizedSolverBasedTest
 
   @Test
   public void testDeclareAndCallUFWithTypedArgs() {
+    assume()
+    .withMessage("Solver %s does not support uninterpreted Functions", solverToUse())
+    .that(solver)
+    .isNotEqualTo(Solvers.STP);
+
     requireBooleanArgument();
     createAndCallUF("fooBool1", FormulaType.BooleanType, bmgr.makeTrue());
     createAndCallUF("fooBool2", FormulaType.BooleanType, bmgr.makeTrue(), bmgr.makeTrue());

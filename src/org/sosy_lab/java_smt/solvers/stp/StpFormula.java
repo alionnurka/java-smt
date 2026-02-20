@@ -20,14 +20,74 @@ import org.sosy_lab.java_smt.api.FormulaType;
 public class StpFormula implements Formula {
     private final long stpExpr;
     private final long stp;
+    private final int exprId;
+    private final String cachedToString;
 
     public StpFormula(long stpExpr, long stp) {
         this.stpExpr = stpExpr;
         this.stp = stp;
+        this.exprId = StpJNI.getExprID(stpExpr);
+        this.cachedToString = computeToString(stpExpr);
     }
 
     public long getExpr() {
         return stpExpr;
+    }
+
+    @Override
+    public final String toString() {
+        return cachedToString;
+    }
+
+    private static String computeToString(long expr) {
+        String s = StpJNI.exprString(expr);
+        if (s != null) {
+            String trimmed = s.trim();
+            if (!trimmed.isBlank()) {
+                String normalized = normalizeArraySelectSyntax(trimmed);
+                return normalized;
+            }
+        }
+        return "stp-expr#" + StpJNI.getExprID(expr);
+    }
+
+    private static String normalizeArraySelectSyntax(String exprString) {
+        if (!exprString.endsWith("]") || exprString.indexOf('[') < 0) {
+            return exprString;
+        }
+        if (exprString.startsWith("(")) {
+            return exprString;
+        }
+
+        int firstBracket = exprString.indexOf('[');
+        String base = exprString.substring(0, firstBracket).trim();
+        if (base.isEmpty()) {
+            return exprString;
+        }
+
+        java.util.ArrayList<String> indices = new java.util.ArrayList<>();
+        int pos = firstBracket;
+        while (pos < exprString.length() && exprString.charAt(pos) == '[') {
+            int end = exprString.indexOf(']', pos + 1);
+            if (end < 0) {
+                return exprString; // malformed
+            }
+            String idx = exprString.substring(pos + 1, end).trim();
+            if (idx.isEmpty()) {
+                return exprString;
+            }
+            indices.add(idx);
+            pos = end + 1;
+        }
+        if (pos != exprString.length()) {
+            return exprString;
+        }
+
+        String result = base;
+        for (String idx : indices) {
+            result = "(select " + result + " " + idx + ")";
+        }
+        return result;
     }
 
     @Override
@@ -41,12 +101,14 @@ public class StpFormula implements Formula {
         }
 
         StpFormula other = (StpFormula) o;
-        return stp == other.stp && stpExpr == other.stpExpr;
+        return stp == other.stp && exprId == other.exprId;
     }
 
     @Override
     public final int hashCode() {
-        return StpJNI.getExprID(stpExpr);
+        int result = Long.hashCode(stp);
+        result = 31 * result + exprId;
+        return result;
     }
 
     @Immutable

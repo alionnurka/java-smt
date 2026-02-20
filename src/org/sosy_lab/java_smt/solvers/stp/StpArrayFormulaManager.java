@@ -21,9 +21,11 @@ import static com.google.common.base.Preconditions.checkArgument;
 public class StpArrayFormulaManager extends AbstractArrayFormulaManager<Long, Long, Long, Long> {
 
     private final long stp;
+    private final StpFormulaCreator creator;
 
     protected StpArrayFormulaManager(StpFormulaCreator formulaCreator) {
         super(formulaCreator);
+        this.creator = formulaCreator;
         this.stp = formulaCreator.getEnv();
     }
 
@@ -62,8 +64,8 @@ public class StpArrayFormulaManager extends AbstractArrayFormulaManager<Long, Lo
         
         long array =
             StpJNI.vc_varExpr(env, arrayName, arrayType);
-        
-        return array;
+
+        return creator.registerDeclaredVariable(arrayName, array);
     }
 
     @Override

@@ -135,7 +135,7 @@ public class FormulaManagerTest extends SolverBasedTest0.ParameterizedSolverBase
 
   @Test
   public void testEqualityVisitor() {
-    assume().that(solver).isNotEqualTo(Solvers.BOOLECTOR);
+    assume().that(solver).isNoneOf(Solvers.BOOLECTOR, Solvers.STP);
 
     var formulaType = imgr != null ? IntegerType : getBitvectorTypeWithSize(8);
 
@@ -190,7 +190,8 @@ public class FormulaManagerTest extends SolverBasedTest0.ParameterizedSolverBase
             bmgr.not(mgr.equal(var1, var3)),
             bmgr.not(mgr.equal(var2, var3)));
 
-    if (ImmutableList.of(Solvers.BOOLECTOR, Solvers.MATHSAT5, Solvers.PRINCESS).contains(solver)) {
+    if (ImmutableList.of(Solvers.BOOLECTOR, Solvers.MATHSAT5, Solvers.PRINCESS, Solvers.STP)
+        .contains(solver)) {
       // Solvers that rewrite
       assertThat(f).isEqualTo(g);
     } else {
@@ -202,7 +203,7 @@ public class FormulaManagerTest extends SolverBasedTest0.ParameterizedSolverBase
 
   @Test
   public void testDistinctVisitor() {
-    assume().that(solver).isNotEqualTo(Solvers.BOOLECTOR);
+    assume().that(solver).isNoneOf(Solvers.BOOLECTOR, Solvers.STP);
 
     var formulaType = imgr != null ? IntegerType : getBitvectorTypeWithSize(8);
 
@@ -514,6 +515,10 @@ public class FormulaManagerTest extends SolverBasedTest0.ParameterizedSolverBase
 
   @Test
   public void ufNameExtractorTest() {
+    assume()
+    .withMessage("Solver %s does not support uninterpreted Functions", solverToUse())
+    .that(solver)
+    .isNotEqualTo(Solvers.STP);
     // Since Boolector does not support integers we use bitvectors for constraints
     if (imgr != null) {
       BooleanFormula constraint =

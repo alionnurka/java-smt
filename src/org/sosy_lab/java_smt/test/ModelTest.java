@@ -267,6 +267,10 @@ public class ModelTest extends SolverBasedTest0.ParameterizedSolverBasedTest0 {
   @Test
   public void testGetBvUfs() throws SolverException, InterruptedException {
     requireBitvectors();
+    assume()
+        .withMessage("Solver %s does not support UFs", solverToUse())
+        .that(solverToUse())
+        .isNotEqualTo(Solvers.STP);
     // Some names are specifically chosen to test the Boolector model
     // Use 1 instead of 0 or max bv value, as solvers tend to use 0, min or max as default
     for (String ufName : VARIABLE_NAMES) {
@@ -311,6 +315,9 @@ public class ModelTest extends SolverBasedTest0.ParameterizedSolverBasedTest0 {
 
   @Test
   public void testGetUFs() throws SolverException, InterruptedException {
+
+    assume().that(solver).isNotEqualTo(Solvers.STP); // Doesn't support UFs
+
     // Boolector does not support integers
     if (imgr != null) {
       IntegerFormula x =
@@ -380,6 +387,10 @@ public class ModelTest extends SolverBasedTest0.ParameterizedSolverBasedTest0 {
 
   @Test
   public void testGetUFwithMoreParams() throws Exception {
+    assume()
+        .withMessage("Solver %s does not support UFs", solverToUse())
+        .that(solverToUse())
+        .isNotEqualTo(Solvers.STP);
     // Boolector does not support integers
     if (imgr != null) {
       IntegerFormula x =
@@ -464,6 +475,10 @@ public class ModelTest extends SolverBasedTest0.ParameterizedSolverBasedTest0 {
 
   @Test
   public void testGetMultipleUFsWithBvs() throws Exception {
+    assume()
+        .withMessage("Solver %s does not support uninterpreted functions", solverToUse())
+        .that(solverToUse())
+        .isNotEqualTo(Solvers.STP);
     requireBitvectors();
     BitvectorFormula arg1 = bvmgr.makeVariable(8, "arg1");
     BitvectorFormula arg2 = bvmgr.makeVariable(8, "arg2");
@@ -530,6 +545,10 @@ public class ModelTest extends SolverBasedTest0.ParameterizedSolverBasedTest0 {
   @Test
   public void testGetMultipleUFsWithBvsWithMultipleArguments() throws Exception {
     requireBitvectors();
+    assume()
+        .withMessage("Solver %s does not support UFs", solverToUse())
+        .that(solverToUse())
+        .isNotEqualTo(Solvers.STP);
     BitvectorFormula arg1 = bvmgr.makeVariable(8, "arg1");
     BitvectorFormula arg2 = bvmgr.makeVariable(8, "arg2");
     BitvectorFormula arg3 = bvmgr.makeVariable(8, "arg3");
@@ -940,6 +959,9 @@ public class ModelTest extends SolverBasedTest0.ParameterizedSolverBasedTest0 {
         try (Model m = prover.getModel()) {
           if (solver == Solvers.BOOLECTOR || solver == Solvers.BITWUZLA) {
             assertThat(m.evaluate(x)).isEqualTo(BigInteger.valueOf(64));
+          } else if (solver == Solvers.STP) {
+            // STP chooses 127 instead of 1
+            assertThat(m.evaluate(x)).isEqualTo(BigInteger.valueOf(127));
           } else {
             assertThat(m.evaluate(x)).isEqualTo(BigInteger.ONE);
           }
@@ -1976,7 +1998,7 @@ public class ModelTest extends SolverBasedTest0.ParameterizedSolverBasedTest0 {
     // [btorslvfun] add_function_inequality_constraints: equality over non-array lambdas not
     // supported yet
     // TODO: only filter out UF formulas here, not all
-    if (solver != Solvers.BOOLECTOR) {
+    if (solver != Solvers.BOOLECTOR && solver != Solvers.STP) {
       // CVC5 crashes here
       assertThatFormula(bmgr.and(pModelAssignments)).implies(constraint);
     }
@@ -2613,7 +2635,7 @@ public class ModelTest extends SolverBasedTest0.ParameterizedSolverBasedTest0 {
     requireArrays();
     requireBitvectors();
 
-    assume().that(solver).isNotEqualTo(Solvers.BOOLECTOR); // Doesn't support multiple indices
+    assume().that(solver).isNoneOf(Solvers.BOOLECTOR, Solvers.STP); // Doesn't support multiple indices
 
     var bitvectorType = FormulaType.getBitvectorTypeWithSize(8);
     var array =
@@ -2637,7 +2659,7 @@ public class ModelTest extends SolverBasedTest0.ParameterizedSolverBasedTest0 {
 
     assume().that(solver).isNotEqualTo(Solvers.BOOLECTOR); // Doesn't support multiple indices
     assume().that(solver).isNotEqualTo(Solvers.YICES2); // Yices does not give nested array models
-
+    assume().that(solver).isNotEqualTo(Solvers.STP); // Doesn't support multiple indices
     // Test for 2d bitvector arrays with formula like:
     //     array[1][7] = 10  and  array[3][2] = 5  and  array[5][4] = 20
     // We have no default value, so the solver can choose any value for other indices,
@@ -2682,6 +2704,7 @@ public class ModelTest extends SolverBasedTest0.ParameterizedSolverBasedTest0 {
 
     assume().that(solver).isNotEqualTo(Solvers.BOOLECTOR); // Doesn't support multiple indices
     assume().that(solver).isNotEqualTo(Solvers.CVC4); // FIXME Broken in JavaSMT
+    assume().that(solver).isNotEqualTo(Solvers.STP); // Doesn't support multiple indices
 
     var scalarType = FormulaType.getBitvectorTypeWithSize(8);
 
@@ -2724,6 +2747,10 @@ public class ModelTest extends SolverBasedTest0.ParameterizedSolverBasedTest0 {
 
     assume().that(solver).isNotEqualTo(Solvers.BOOLECTOR); // Doesn't support multiple indices
     assume().that(solver).isNotEqualTo(Solvers.YICES2); // Yices does not give nested array models
+    assume()
+        .withMessage("Solver %s does not support nested array terms", solverToUse())
+        .that(solverToUse())
+        .isNotEqualTo(Solvers.STP);
 
     // FIXME CVC4 array model is sometimes broken in JavaSMT. Unfixable in CVC4, fixed in CVC5.
     assume().that(solver).isNotEqualTo(Solvers.CVC4);

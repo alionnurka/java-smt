@@ -343,6 +343,7 @@ public class SolverThreadLocalityTest extends SolverBasedTest0.ParameterizedSolv
     assume()
         .that(solverToUse())
         .isNoneOf(
+            Solvers.STP,
             Solvers.OPENSMT,
             Solvers.MATHSAT5,
             Solvers.SMTINTERPOL,

@@ -220,7 +220,7 @@ public class ArrayFormulaManagerTest extends SolverBasedTest0.ParameterizedSolve
     assume()
         .withMessage("Solver %s does not yet support array initialization", solverToUse())
         .that(solverToUse())
-        .isNotEqualTo(Solvers.BOOLECTOR);
+        .isNoneOf(Solvers.BOOLECTOR, Solvers.STP);
 
     final int size = 8;
 

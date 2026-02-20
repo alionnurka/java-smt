@@ -382,7 +382,7 @@ public abstract class SolverBasedTest0 {
     assume()
         .withMessage("Solver %s does not support model generation for arrays", solverToUse())
         .that(solverToUse())
-        .isNotEqualTo(Solvers.OPENSMT);
+        .isNoneOf(Solvers.OPENSMT, Solvers.STP);
   }
 
   protected void requireModel() {
@@ -396,28 +396,28 @@ public abstract class SolverBasedTest0 {
     assume()
         .withMessage("Solver %s does not support formula visitor", solverToUse())
         .that(solverToUse())
-        .isNotEqualTo(Solvers.BOOLECTOR);
+        .isNoneOf(Solvers.BOOLECTOR, Solvers.STP);
   }
 
   protected void requireUnsatCore() {
     assume()
         .withMessage("Solver %s does not support unsat core generation", solverToUse())
         .that(solverToUse())
-        .isNotEqualTo(Solvers.BOOLECTOR);
+        .isNoneOf(Solvers.BOOLECTOR, Solvers.STP);
   }
 
   protected void requireUnsatCoreOverAssumptions() {
     assume()
         .withMessage("Solver %s does not support unsat core generation", solverToUse())
         .that(solverToUse())
-        .isNotEqualTo(Solvers.PRINCESS);
+        .isNoneOf(Solvers.PRINCESS, Solvers.STP);
   }
 
   protected void requireSubstitution() {
     assume()
         .withMessage("Solver %s does not support formula substitution", solverToUse())
         .that(solverToUse())
-        .isNotEqualTo(Solvers.BOOLECTOR);
+        .isNoneOf(Solvers.BOOLECTOR, Solvers.STP);
   }
 
   protected void requireUserPropagators() {

@@ -11,6 +11,7 @@
 package org.sosy_lab.java_smt.solvers.stp;
 
 import org.sosy_lab.java_smt.basicimpl.AbstractBitvectorFormulaManager;
+import org.sosy_lab.java_smt.api.FormulaType;
 
 
 import java.math.BigInteger;
@@ -18,10 +19,12 @@ import java.math.BigInteger;
 public class StpBitvectorFormulaManager extends AbstractBitvectorFormulaManager<Long, Long, Long, Long> {
 
     private final long stp;
+    private final StpFormulaCreator creator;
 
     StpBitvectorFormulaManager(
             StpFormulaCreator creator, StpBooleanFormulaManager pBmgr) {
         super(creator, pBmgr);
+        this.creator = creator;
         this.stp = creator.getEnv();
     }
 
@@ -162,8 +165,19 @@ public class StpBitvectorFormulaManager extends AbstractBitvectorFormulaManager<
 
     @Override
     protected Long makeVariableImpl(int pLength, String pVar) {
+        Long existing = creator.lookupDeclaredVariable(pVar);
+        if (existing != null) {
+            FormulaType<?> existingType = creator.getFormulaType(existing);
+            FormulaType<?> expectedType = FormulaType.getBitvectorTypeWithSize(pLength);
+            if (!existingType.equals(expectedType)) {
+                throw new IllegalArgumentException(
+                    "Symbol '" + pVar + "' already declared with type " + existingType);
+            }
+            return existing;
+        }
         long type = StpJNI.vc_bvType(stp, pLength);
-        return StpJNI.vc_varExpr(stp, pVar, type);
+        long var = StpJNI.vc_varExpr(stp, pVar, type);
+        return creator.registerDeclaredVariable(pVar, var);
     }
 
     @Override
