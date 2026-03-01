@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+This file is part of JavaSMT,
+an API wrapper for a collection of SMT solvers:
+https://github.com/sosy-lab/java-smt
+
+SPDX-FileCopyrightText: 2024 Dirk Beyer <https://www.sosy-lab.org>
+
+SPDX-License-Identifier: Apache-2.0
+-->
+
+<!-- vim: set tabstop=8 shiftwidth=4 expandtab sts=4 filetype=ant fdm=marker: -->
+<project name="publish-solvers-stp" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
+
+    <import file="macros.xml"/>
+
+    <!-- ========================= -->
+    <!-- Package STP              -->
+    <!-- ========================= -->
+    <target name="package-stp" depends="">
+
+        <!-- Require STP path -->
+        <fail unless="stp.path">
+            Please specify the path to the directory with all the prepared .so files.
+            The directory must contain: libjavasmtstp.so, libstp.so, libstp.so.2.3, libabc-pic.so.
+            The path lib/native/source/stp contains all these shared objects.
+            Use the flag -Dstp.path=/path/to/stp
+        </fail>
+
+        <!-- Require custom revision -->
+        <fail unless="stp.customRev">
+            Please specify a custom revision with:
+            -Dstp.customRev=XXX
+            The revision must be unique in the Ivy repository.
+        </fail>
+
+        <!-- Get git short hash from remote repository (like Boolector, but from remote). -->
+        <property name="stp.repo.url" value="https://github.com/stp/stp.git"/>
+        <exec executable="sh" outputproperty="stp.revision" failonerror="true">
+            <arg value="-c"/>
+            <arg value="git ls-remote ${stp.repo.url} HEAD | cut -f1 | cut -c1-7"/>
+        </exec>
+
+        <!-- Version string: customRev-g&lt;short-hash&gt; (e.g. 2.3.4-g1a2b3c4) -->
+        <property name="stp.version" value="${stp.customRev}-g${stp.revision}"/>
+
+        <echo message="Building STP in version '${stp.version}'"/>
+
+        <!-- Copy and rename to Ivy scheme: [artifact]-[revision].[ext] -->
+        <property name="stp.dist.dir" value="${ivy.solver.dist.dir}/stp"/>
+        <mkdir dir="${stp.dist.dir}"/>
+        <copy file="${stp.path}/libjavasmtstp.so"  tofile="${stp.dist.dir}/libjavasmtstp-${stp.version}.so"/>
+        <copy file="${stp.path}/libstp.so"         tofile="${stp.dist.dir}/libstp-${stp.version}.so"/>
+        <copy file="${stp.path}/libstp.so.2.3"    tofile="${stp.dist.dir}/libstp-${stp.version}.so.2.3"/>
+        <copy file="${stp.path}/libabc-pic.so"    tofile="${stp.dist.dir}/libabc-pic-${stp.version}.so"/>
+        <echo message="Prepared artifacts in ${stp.dist.dir}/"/>
+
+    </target>
+
+
+
+    <!-- ========================= -->
+    <!-- Publish STP              -->
+    <!-- ========================= -->
+
+    <target name="publish-stp"
+            depends="package-stp, load-ivy"
+            description="Publish STP binaries to Ivy repository.">
+
+        <ivy:resolve conf="solver-stp"
+                     file="solvers_ivy_conf/ivy_stp.xml" />
+
+        <publishToRepository
+            solverName="STP"
+            solverVersion="${stp.version}"
+            distDir="${stp.dist.dir}"/>
+
+    </target>
+
+</project>

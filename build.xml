@@ -31,6 +31,7 @@ SPDX-License-Identifier: Apache-2.0
         runtime-optimathsat,
         runtime-princess,
         runtime-smtinterpol,
+        runtime-stp,
         runtime-yices2,
         runtime-z3,
         runtime-z3-legacy
