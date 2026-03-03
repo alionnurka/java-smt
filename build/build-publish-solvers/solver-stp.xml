@@ -23,7 +23,7 @@ SPDX-License-Identifier: Apache-2.0
         <!-- Require STP path -->
         <fail unless="stp.path">
             Please specify the path to the directory with all the prepared .so files.
-            The directory must contain: libjavasmtstp.so, libstp.so, libstp.so.2.3, libabc-pic.so.
+            The directory must contain: libjavasmtstp.so, libstp.so, libstp.so.2.3, libabc-pic.so, libminisat.so.2.
             The path lib/native/source/stp contains all these shared objects.
             Use the flag -Dstp.path=/path/to/stp
         </fail>
@@ -54,6 +54,7 @@ SPDX-License-Identifier: Apache-2.0
         <copy file="${stp.path}/libstp.so"         tofile="${stp.dist.dir}/libstp-${stp.version}.so"/>
         <copy file="${stp.path}/libstp.so.2.3"    tofile="${stp.dist.dir}/libstp-${stp.version}.so.2.3"/>
         <copy file="${stp.path}/libabc-pic.so"    tofile="${stp.dist.dir}/libabc-pic-${stp.version}.so"/>
+        <copy file="${stp.path}/libminisat.so.2"  tofile="${stp.dist.dir}/libminisat-${stp.version}.so.2" followSymlinks="true"/>
         <echo message="Prepared artifacts in ${stp.dist.dir}/"/>
 
     </target>

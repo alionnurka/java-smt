@@ -33,6 +33,7 @@ SPDX-License-Identifier: Apache-2.0
         <artifact name="libstp" conf="solver-stp" type="shared-object" ext="so"/>
         <artifact name="libstp" conf="solver-stp" type="shared-object" ext="so.2.3"/>
         <artifact name="libabc-pic" conf="solver-stp" type="shared-object" ext="so"/>
+        <artifact name="libminisat" conf="solver-stp" type="shared-object" ext="so.2"/>
     </publications>
 
     <dependencies></dependencies>
