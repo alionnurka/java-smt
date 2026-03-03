@@ -232,6 +232,10 @@ public class SolverFormulaIOTest extends SolverBasedTest0.ParameterizedSolverBas
 
   @Test
   public void valDumpTest() {
+    assume()
+        .withMessage("STP does not support dumping formulae")
+        .that(solverToUse())
+        .isNotEqualTo(Solvers.STP);
     // Boolector will fail this anyway since bools are bitvecs for btor
     TruthJUnit.assume().that(solver).isNotEqualTo(Solvers.BOOLECTOR);
     BooleanFormula tr1 = bmgr.makeBoolean(true);

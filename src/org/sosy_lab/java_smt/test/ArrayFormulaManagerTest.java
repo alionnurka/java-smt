@@ -125,6 +125,10 @@ public class ArrayFormulaManagerTest extends SolverBasedTest0.ParameterizedSolve
   @Test
   public void testBvIndexBvValue() throws SolverException, InterruptedException {
     requireBitvectors();
+    assume()
+        .withMessage("STP fails with 'TransformTerm: this kind is not supported' for array store in equivalence context")
+        .that(solverToUse())
+        .isNotEqualTo(Solvers.STP);
 
     // (arr2 = store(arr1, 0100, 0010)) & !(select(arr2, 0100) = 0010)
     BitvectorFormula num2 = bvmgr.makeBitvector(4, 2);

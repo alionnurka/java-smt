@@ -345,7 +345,7 @@ public class BitvectorFormulaManagerTest extends SolverBasedTest0.ParameterizedS
     assume()
         .withMessage("Solver %s does not support arrays with integer index", solverToUse())
         .that(solverToUse())
-        .isNoneOf(Solvers.BOOLECTOR, Solvers.BITWUZLA);
+        .isNoneOf(Solvers.BOOLECTOR, Solvers.BITWUZLA, Solvers.STP);
 
     BitvectorFormula bv = bvmgr.makeBitvector(4, 3);
     ArrayFormula<IntegerFormula, BitvectorFormula> arr =
@@ -371,6 +371,11 @@ public class BitvectorFormulaManagerTest extends SolverBasedTest0.ParameterizedS
 
   @Test
   public void bvDistinct() throws SolverException, InterruptedException {
+    assume()
+        .withMessage("STP fails or times out on large bitvector distinct constraints")
+        .that(solverToUse())
+        .isNotEqualTo(Solvers.STP);
+
     for (int bitsize : new int[] {2, 4, 6}) {
       if (solverToUse() == Solvers.CVC5 && bitsize > 4) {
         // CVC5 runs endlessly for > 4; A issue is open for this as CVC4 can solve this in less than
