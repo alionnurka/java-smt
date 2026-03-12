@@ -1,16 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<!--
-This file is part of JavaSMT,
-an API wrapper for a collection of SMT solvers:
-https://github.com/sosy-lab/java-smt
-
-SPDX-FileCopyrightText: 2024 Dirk Beyer <https://www.sosy-lab.org>
-
-SPDX-License-Identifier: Apache-2.0
--->
-
-<!-- vim: set tabstop=8 shiftwidth=4 expandtab sts=4 filetype=ant fdm=marker: -->
 <project name="publish-solvers-stp" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
 
     <import file="macros.xml"/>
@@ -23,46 +12,71 @@ SPDX-License-Identifier: Apache-2.0
         <!-- Require STP path -->
         <fail unless="stp.path">
             Please specify the path to the directory with all the prepared .so files.
-            The directory must contain: libjavasmtstp.so, libstp.so, libstp.so.2.3, libabc-pic.so, libminisat.so.2.1.0 or libminisat.so.2.
-            The path lib/native/source/stp contains all these shared objects.
-            Use the flag -Dstp.path=/path/to/stp
+            The directory must contain: libjavasmtstp.so, libstp.so, libstp.so.2.3,
+            libabc-pic.so, libminisat.so.2.1.0 or libminisat.so.2.
         </fail>
 
         <!-- Require custom revision -->
         <fail unless="stp.customRev">
             Please specify a custom revision with:
             -Dstp.customRev=XXX
-            The revision must be unique in the Ivy repository.
         </fail>
 
-        <!-- Get git short hash from remote repository (like Boolector, but from remote). -->
+        <!-- Get git short hash -->
         <property name="stp.repo.url" value="https://github.com/stp/stp.git"/>
         <exec executable="sh" outputproperty="stp.revision" failonerror="true">
             <arg value="-c"/>
             <arg value="git ls-remote ${stp.repo.url} HEAD | cut -f1 | cut -c1-7"/>
         </exec>
 
-        <!-- Version string: customRev-g&lt;short-hash&gt; (e.g. 2.3.4-g1a2b3c4) -->
+        <!-- Version string -->
         <property name="stp.version" value="${stp.customRev}-g${stp.revision}"/>
 
         <echo message="Building STP in version '${stp.version}'"/>
 
-        <!-- Copy and rename to Ivy scheme: [artifact]-[revision].[ext] -->
+        <!-- ========================================= -->
+        <!-- Patch STP dependency to versioned minisat -->
+        <!-- ========================================= -->
+
+        <exec executable="patchelf" dir="${stp.path}" failonerror="true">
+            <arg value="--replace-needed"/>
+            <arg value="libminisat.so.2"/>
+            <arg value="libminisat-${stp.version}.so.2"/>
+            <arg value="libstp.so.2.3"/>
+        </exec>
+
+        <!-- Ensure solver loads libraries from same directory -->
+        <exec executable="patchelf" dir="${stp.path}" failonerror="true">
+            <arg value="--set-rpath"/>
+            <arg value="$ORIGIN"/>
+            <arg value="libstp.so.2.3"/>
+        </exec>
+
+        <!-- ========================================= -->
+        <!-- Copy and rename libraries for Ivy         -->
+        <!-- ========================================= -->
+
         <property name="stp.dist.dir" value="${ivy.solver.dist.dir}/stp"/>
         <mkdir dir="${stp.dist.dir}"/>
-        <copy file="${stp.path}/libjavasmtstp.so"  tofile="${stp.dist.dir}/libjavasmtstp-${stp.version}.so"/>
-        <copy file="${stp.path}/libstp.so"         tofile="${stp.dist.dir}/libstp-${stp.version}.so"/>
-        <copy file="${stp.path}/libstp.so.2.3"    tofile="${stp.dist.dir}/libstp-${stp.version}.so.2.3"/>
-        <copy file="${stp.path}/libabc-pic.so"    tofile="${stp.dist.dir}/libabc-pic-${stp.version}.so"/>
-        <!-- Copy the actual binary (libminisat.so.2.1.0), not the symlink libminisat.so.2.
-             libminisat.so.2 is a symlink to libminisat.so.2.1.0; copying the symlink would
-             produce a broken link in the Ivy repo, causing UnsatisfiedLinkError at runtime. -->
-        <copy file="${stp.path}/libminisat.so.2.1.0" tofile="${stp.dist.dir}/libminisat-${stp.version}.so.2"/>
+
+        <copy file="${stp.path}/libjavasmtstp.so"
+              tofile="${stp.dist.dir}/libjavasmtstp-${stp.version}.so"/>
+
+        <copy file="${stp.path}/libstp.so"
+              tofile="${stp.dist.dir}/libstp-${stp.version}.so"/>
+
+        <copy file="${stp.path}/libstp.so.2.3"
+              tofile="${stp.dist.dir}/libstp-${stp.version}.so.2.3"/>
+
+        <copy file="${stp.path}/libabc-pic.so"
+              tofile="${stp.dist.dir}/libabc-pic-${stp.version}.so"/>
+
+        <copy file="${stp.path}/libminisat.so.2.1.0"
+              tofile="${stp.dist.dir}/libminisat-${stp.version}.so.2"/>
+
         <echo message="Prepared artifacts in ${stp.dist.dir}/"/>
 
     </target>
-
-
 
     <!-- ========================= -->
     <!-- Publish STP              -->
