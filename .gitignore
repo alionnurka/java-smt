@@ -75,3 +75,10 @@ build.properties
 /downloads
 
 pom.xml
+.project
+.project
+doc/Example-Gradle-Project-Kotlin/bin/main/org/sosy_lab/java_smt_example/JavaSMTKotlinExample.kt
+doc/Example-Gradle-Project-Kotlin/bin/test/org/sosy_lab/java_smt_example/SudokuTest.class
+doc/Example-Gradle-Project-Kotlin/bin/test/org/sosy_lab/java_smt_example/AppTest.kt
+.project
+.project
