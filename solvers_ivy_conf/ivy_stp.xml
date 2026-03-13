@@ -1,19 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<!--
-This file is part of JavaSMT,
-an API wrapper for a collection of SMT solvers:
-https://github.com/sosy-lab/java-smt
-
-SPDX-FileCopyrightText: 2020 Dirk Beyer <https://www.sosy-lab.org>
-
-SPDX-License-Identifier: Apache-2.0
--->
-
 <ivy-module version="2.0"
     xmlns:e="http://ant.apache.org/ivy/extra"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
+
     <info organisation="org.sosy_lab" module="javasmt-solver-stp">
       <license name="MIT License" url="https://github.com/stp/stp/blob/master/LICENSE"/>
         <description>
@@ -26,16 +15,20 @@ SPDX-License-Identifier: Apache-2.0
     </configurations>
 
     <publications defaultconf="solver-stp">
-        <!-- STP binaries and dependencies (Linux). -->
-        <!-- JavaSMT JNI wrapper that is loaded via NativeLibraries.loadLibrary("javasmtstp"). -->
+
+        <!-- JNI wrapper -->
         <artifact name="libjavasmtstp" conf="solver-stp" type="shared-object" ext="so"/>
 
+        <!-- STP core -->
         <artifact name="libstp" conf="solver-stp" type="shared-object" ext="so"/>
         <artifact name="libstp" conf="solver-stp" type="shared-object" ext="so.2.3"/>
+
+        <!-- Dependencies -->
         <artifact name="libabc-pic" conf="solver-stp" type="shared-object" ext="so"/>
         <artifact name="libminisat" conf="solver-stp" type="shared-object" ext="so.2"/>
+
     </publications>
 
-    <dependencies></dependencies>
+    <dependencies/>
 
 </ivy-module>
